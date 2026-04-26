@@ -1,0 +1,2699 @@
+{
+  "generatedAt": 1777100922,
+  "source": "NPS API /parks?fields=images and /webcams plus direct feed validation",
+  "parks": [
+    {
+      "name": "Acadia",
+      "code": "acad",
+      "region": "ME",
+      "category": "Water",
+      "detail": "Acadia National Park protects the natural beauty of the highest rocky headlands along the Atlantic coastline of the United States...",
+      "webcamURL": "https://www.nps.gov/acad/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7B477B-1DD8-B71B-0BCB48E009241BAA.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B477B-1DD8-B71B-0BCB48E009241BAA.jpg",
+          "title": "Sunset atop Cadillac Mountain",
+          "caption": "As the tallest point on the eastern seaboard Cadillac Mountain provides fantastic viewpoints.",
+          "credit": "NPS / Kristi Rugg"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B4BEC-1DD8-B71B-0B2CF833F93140FF.jpg",
+          "title": "Heavy snow-laden trees",
+          "caption": "During the colder months snows transform our landscape into a winter wonderland.",
+          "credit": "NPS / Kristi Rugg"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B45AE-1DD8-B71B-0B7EE131C7DFC2F5.jpg",
+          "title": "Acadia's rocky coastline",
+          "caption": "Millions of people come to Acadia for our distinctive rocky coastline.",
+          "credit": "NPS / Kristi Rugg"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B48F9-1DD8-B71B-0BD3B413E58978F8.jpg",
+          "title": "Climbing The Precipice",
+          "caption": "Whether it's a stroll along Ocean Path or a difficult ascent up The Precipice, there are hiking trails for everyone!",
+          "credit": "NPS / Kristi Rugg"
+        }
+      ],
+      "feedCount": 1,
+      "possibleFeedCount": 2,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Eye on Acadia",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-acad/eye.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=35DB6BF0-E1A6-351A-4D2A4CBF185650AF",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 6927h ago"
+        },
+        {
+          "title": "Jordan Pond Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://barharborcam.com/webcams/jordanpond/jordanpond.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=A483238F-BAE9-C9E2-BE362FE8240C5E7F",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Arches",
+      "code": "arch",
+      "region": "UT",
+      "category": "Scenic",
+      "detail": "Discover a landscape of contrasting colors, land forms, and textures unlike any other. The park has over 2,000 natural stone arch...",
+      "webcamURL": "https://www.nps.gov/arch/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/473F5463-F0D2-261D-CEF5FCB39363590B.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/473F5463-F0D2-261D-CEF5FCB39363590B.jpg",
+          "title": "An afternoon at Delicate Arch",
+          "caption": "Exploration awaits at Arches",
+          "credit": "NPS/Veronica Verdin"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C79931C-1DD8-B71B-0BF201E3DB540D04.jpg",
+          "title": "Double O Arch",
+          "caption": "Double O Arch is one of many large arches in the Devils Garden area",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A0B2B-1DD8-B71B-0BE0E26B0740AA6B.jpg",
+          "title": "Delicate Arch",
+          "caption": "Delicate Arch is perhaps the most famous natural arch in the world.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A0C49-1DD8-B71B-0B460D58D6E83B40.jpg",
+          "title": "Milky Way over the Garden of Eden",
+          "caption": "Arches offers some excellent night sky viewing.",
+          "credit": "NPS/Wonderly"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A0DE5-1DD8-B71B-0BFBE720788EF4A3.jpg",
+          "title": "Park Avenue Trail",
+          "caption": "The Park Avenue trail is one of many hiking trails at Arches, ranging from easy to strenuous.",
+          "credit": "NPS/Herbert"
+        }
+      ],
+      "feedCount": 1,
+      "possibleFeedCount": 2,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "UDOT Traffic Camera",
+          "kind": "Still Webcam",
+          "imageURL": "https://udottraffic.utah.gov/1_devices/aux16852.jpeg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46BCF-1DD8-B71B-0B91099975A047A5",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "Entrance Station Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-arch/arch_traffic.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46BDB-1DD8-B71B-0B250E8F4CC1E74A",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Big Bend",
+      "code": "bibe",
+      "region": "TX",
+      "category": "Scenic",
+      "detail": "There is a place in Far West Texas where night skies are dark as coal and rivers carve temple-like canyons in ancient limestone....",
+      "webcamURL": "https://www.nps.gov/bibe/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/8BF8356B-BB63-76A4-19F5296EF94C96B4.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8BF8356B-BB63-76A4-19F5296EF94C96B4.jpg",
+          "title": "Blooming Cenizo",
+          "caption": "Cenizo, or Big Bend Silverleaf blossoms after summer rains.",
+          "credit": "NPS"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8BCD073D-D2AF-C63C-F75A21DF9E355C61.jpg",
+          "title": "Century Plant Agave",
+          "caption": "Century Plants bloom only once in their long lives.",
+          "credit": "NPS / C. Negele"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8BA1EB23-E950-8F6E-62C7523D37E42564.jpg",
+          "title": "Vermilion Flycatcher",
+          "caption": "Big Bend is home to over 450 species of birds!",
+          "credit": "NPS"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8BDD8415-B290-DEF8-105D75C840EBFCD2.jpg",
+          "title": "Fascinating Geology",
+          "caption": "Volcanic features abound near Castolon",
+          "credit": "NPS / B. Trester"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8B115C1E-B4B2-AF30-1C562C5D39E4B637.jpg",
+          "title": "Desert Scenery",
+          "caption": "Big Bend is a prime example of Chihuahuan Desert",
+          "credit": "NPS"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8AEFBCCC-0C9E-92DD-5E2B311EC6DA0339.jpg",
+          "title": "Santa Elena Canyon",
+          "caption": "Santa Elena Canyon",
+          "credit": "NPS / B. Trester"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8B05A8A9-0539-1AA2-CC93A517B18103EC.jpg",
+          "title": "View from the South Rim of the Chisos",
+          "caption": "Big Bend is a place of expansive views",
+          "credit": "NPS"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8B20FD43-C758-653A-10059B3D1C2309C8.jpg",
+          "title": "Rio Grande Scene",
+          "caption": "The Rio Grande serves as the park's southern boundary",
+          "credit": "NPS"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 0,
+      "hasLiveVideo": false,
+      "feeds": []
+    },
+    {
+      "name": "Channel Islands",
+      "code": "chis",
+      "region": "CA",
+      "category": "Water",
+      "detail": "Channel Islands National Park encompasses five remarkable islands and their ocean environment, preserving and protecting a wealth...",
+      "webcamURL": "https://www.nps.gov/chis/learn/photosmultimedia/ocean-webcam.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/8DE774D1-CB22-37F2-D826E3F0A73D303A.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8DE774D1-CB22-37F2-D826E3F0A73D303A.jpg",
+          "title": "Inspiration Point by Tim Hauf",
+          "caption": "Inspiration Point, Anacapa Island: One of the most spectacular views in the park can be found from Inspiration Point. Looking to the west, one may see Middle and West Anacapa, with Santa Cruz Island in the distance.",
+          "credit": "Tim Hauf, timhaufphotography.com"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8E0CA65D-0CF8-87C6-DE4B4AA7AAC02DEA.jpg",
+          "title": "Arch Point by Tim Hauf",
+          "caption": "Arch Point, Santa Barbara Island: With winter rains, the coreopsis emerges from summer's dormancy with light green foliage and bright yellow daisy-like flowers",
+          "credit": "Tim Hauf, timhaufphotography.com"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8DF30150-D91A-D761-4A5064BA77154E2C.jpg",
+          "title": "Torrey Pines by Tim Hauf",
+          "caption": "Torrey Pines, Santa Rosa Island: Torrey pines occur naturally in only two locations throughout the world--on the cool, fog drenched northeastern slopes of Bechers Bay and just north of San Diego.",
+          "credit": "Tim Hauf, timhaufphotography.com"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8E1AE30B-DBDB-C193-C1023F2C7591ABA0.jpg",
+          "title": "Point Bennet by Tim Hauf",
+          "caption": "Point Bennet, San Miguel Island: One of the greatest concentrations of wildlife in the world occurs on San Miguel with over 100,000 pinnipeds gathering to breed, pup, and rest.",
+          "credit": "Tim Hauf, timhaufphotography.com"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8E003516-C693-8617-61EC2F2E06BA1E45.jpg",
+          "title": "Island Fox by Tim Hauf",
+          "caption": "Island Fox, Santa Cruz Island: Thousands of years of isolation in a unique island environment has resulted in the development of the endemic island fox, a dwarf form of the mainland gray fox.",
+          "credit": "Tim Hauf, timhaufphotography.com"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 1,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Channel Islands Live Bald Eagle Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/commonspot/customcf/webcam/inactive_webcam.png",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B462B9-1DD8-B71B-0B0390E13AE28767",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 35507h ago",
+          "available": false
+        }
+      ]
+    },
+    {
+      "name": "Crater Lake",
+      "code": "crla",
+      "region": "OR",
+      "category": "Water",
+      "detail": "Crater Lake inspires awe. Native Americans witnessed its formation 7,700 years ago, when a violent eruption triggered the collaps...",
+      "webcamURL": "https://www.nps.gov/crla/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7B227E-1DD8-B71B-0BEECDD24771C381.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B227E-1DD8-B71B-0BEECDD24771C381.jpg",
+          "title": "Wizard Island",
+          "caption": "Looking at Crater Lake and Wizard Island from Discovery Point",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B23C5-1DD8-B71B-0B4F2400855714FA.jpg",
+          "title": "Chaski Bay",
+          "caption": "A view from Garfield Peak along the rim of Crater Lake",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B2524-1DD8-B71B-0B84C60FF964D102.jpg",
+          "title": "Crater Lake",
+          "caption": "A view across Crater Lake from the lakeshore",
+          "credit": "NPS Photot"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B26D3-1DD8-B71B-0B939039D597B9A3.jpg",
+          "title": "Crater Lake from Mount Scott",
+          "caption": "A view of the caldera from Mt. Scott, the highest point in Crater Lake National Park",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B28BD-1DD8-B71B-0B3EA88108473DEA.jpg",
+          "title": "Vidae Falls",
+          "caption": "Water flowing over Vidae Falls",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B2A16-1DD8-B71B-0B181596A537FAE3.jpg",
+          "title": "Wildflowers on Wizard Island",
+          "caption": "Wildflowers along the Wizard Island Summit Trail",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B2B97-1DD8-B71B-0B8A0028F7FBEC27.jpg",
+          "title": "Crater Lake in Winter",
+          "caption": "A view of Crater Lake in the winter",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B2D3B-1DD8-B71B-0B39E67A3DC57E94.jpg",
+          "title": "Clouds in the Caldera",
+          "caption": "Clouds in the Crater Lake Caldera",
+          "credit": "NPS Photo"
+        }
+      ],
+      "feedCount": 3,
+      "possibleFeedCount": 3,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Steel Information Center",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-crla/cameraHQ0.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B462AA-1DD8-B71B-0BAC82E1AFD3CC1D",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Annie Spring Entrance Station",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-crla/camera0.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4628D-1DD8-B71B-0B183DA83E05154F",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Crater Lake",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-crla/camerasinnott.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=BAB9400D-C123-A696-F87EB5B6A61F30D6",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Denali",
+      "code": "dena",
+      "region": "AK",
+      "category": "Wildlife",
+      "detail": "Denali is six million acres of wild land, bisected by one ribbon of road. Travelers along it see the relatively low-elevation tai...",
+      "webcamURL": "https://www.nps.gov/dena/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C83CC90-1DD8-B71B-0B1F35E5ED96E36F.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C83CC90-1DD8-B71B-0B1F35E5ED96E36F.jpg",
+          "title": "Dall Sheep",
+          "caption": "Congress originally created Denali National Park (called Mount McKinley National Park, at the time) to protect wildlife, particularly Dall sheep",
+          "credit": "NPS Photo / Nathan Kostegian"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C83C9C7-1DD8-B71B-0B9B669ED961F97E.jpg",
+          "title": "Mountains and Reflection Pond",
+          "caption": "Mount McKinley is the highest mountain in North America",
+          "credit": "NPS Photo / Nathan Kostegian"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/FC6D4E23-02EE-B80D-09D9ECF7C334566E.jpg",
+          "title": "Talkeetna View",
+          "caption": "The view of Mt. McKinley from the south, in Talkeetna, Alaska",
+          "credit": "NPS Photo / Emily Mesner"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C83CB1A-1DD8-B71B-0BBB071EB28A90FD.jpg",
+          "title": "View from Stony Overlook",
+          "caption": "Many bus trips into Denali pause at Stony Overlook, which features a great view of Mt. McKinley when skies are clear",
+          "credit": "NPS Photo / Nathan Kostegian"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/FC76414B-E76C-63E7-C399A03433D924FE.jpg",
+          "title": "Transit Driver",
+          "caption": "Transit buses are a primary way for visitors to sightsee in Denali during summer",
+          "credit": "NPS Photo / Emily Mesner"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/FC7B6DBE-B7A8-DC59-246E01A289DBF21E.jpg",
+          "title": "Alpenglow",
+          "caption": "Alpenglow on North America's tallest peak",
+          "credit": "NPS Photo / Emily Mesner"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/FC83BEFE-AE6C-5FF4-B24723DEBC350D5B.jpg",
+          "title": "Discovery Hike",
+          "caption": "Visitors following a ranger on a Discovery Hike, an off-trail adventure",
+          "credit": "NPS Photo / Emily Mesner"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/FC8ECC8C-A531-46F8-0D60DF1C84105DBE.jpg",
+          "title": "Grizzlies",
+          "caption": "Grizzlies walking on the park's sole road",
+          "credit": "NPS Photo / Emily Mesner"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 2,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Alpine Tundra Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/commonspot/customcf/webcam/inactive_webcam.png",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B465AC-1DD8-B71B-0B12FBD542C257E8",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 35507h ago",
+          "available": false
+        },
+        {
+          "title": "Alaska Railroad Depot",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/uploads/cropped_image/primary/EBD7D020-BB3E-B620-75F8F4FDE7884F0F.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B466C8-1DD8-B71B-0B09BF265A80000E",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 30150h ago",
+          "available": false
+        }
+      ]
+    },
+    {
+      "name": "Everglades",
+      "code": "ever",
+      "region": "FL",
+      "category": "Wildlife",
+      "detail": "Established in 1947 as the first national park created for its biodiversity, Everglades National Park protects 1.5 million acres...",
+      "webcamURL": "https://www.nps.gov/ever/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/17EC840E-9926-2E09-F2DD47A282915BBB.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/17EC840E-9926-2E09-F2DD47A282915BBB.jpg",
+          "title": "Cypress Tree Sunrise",
+          "caption": "Cypress Tree Sunrise (2020 Photo Contest)",
+          "credit": "NPS Photo by Miguel Salas"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C854681-1DD8-B71B-0BA4F6D9379336DF.jpg",
+          "title": "Nine Mile Pond",
+          "caption": "A meeting ground of marsh and mangrove environments. You may see alligators, wading birds, turtles, and fish.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C8547ED-1DD8-B71B-0B596F29F0A9A60B.jpg",
+          "title": "American Alligator",
+          "caption": "An American Alligator high walks the Anhinga Trail.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C85E60F-1DD8-B71B-0BAB4F7583E96025.jpg",
+          "title": "Shark Valley Tram and Bicycle Road",
+          "caption": "Biking is a great way to experience the quiet beauty of the Everglades.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C85E70B-1DD8-B71B-0B7C75649CCDB907.jpg",
+          "title": "Transition from Sawgrass to Florida Bay",
+          "caption": "An aerial view of the landscape transition from Sawgrass to Florida Bay.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C85F532-1DD8-B71B-0BFC5BB51D8AB675.jpg",
+          "title": "Camping at Long Pine Key",
+          "caption": "Long Pine Key Campground is open seasonally from November through May. It is located seven miles (11 km) from the main entrance, just off the main road.",
+          "credit": "NPS Photo"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 0,
+      "hasLiveVideo": false,
+      "feeds": []
+    },
+    {
+      "name": "Gateway Arch",
+      "code": "jeff",
+      "region": "MO",
+      "category": "Scenic",
+      "detail": "Gateway Arch National Park commemorates President Jefferson\u2019s vision of a continental nation, the individuals and cultural groups...",
+      "webcamURL": "https://www.nps.gov/jeff/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/200BA7E6-D782-9A97-A8C36AC178DEB31C.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/200BA7E6-D782-9A97-A8C36AC178DEB31C.jpg",
+          "title": "Cherry trees in bloom",
+          "caption": "The blooming cherry trees in Kiener Plaza provide a wonderful foreground for the Gateway Arch and Old Courthouse in spring.",
+          "credit": "NPS photo/Jennifer Clark"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7BE538-1DD8-B71B-0BFF11B2DBCF6E6E.jpg",
+          "title": "Reaching for the Clouds",
+          "caption": "Arch reaching toward the clouds.",
+          "credit": "NPS Photo/Sue Ford"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/348E44EA-F431-FA18-DCB014F7BAA8D225.jpg",
+          "title": "The Gateway Arch reflected",
+          "caption": "A walk around the Gateway Arch grounds provide many chances to view the Arch from many different angles.",
+          "credit": "NPS photo/Jennifer Clark"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/34E649C6-F06F-EB7F-0F9B8B092450772F.jpg",
+          "title": "The Old Courthouse",
+          "caption": "The Old Courthouse",
+          "credit": "NPS photo/Jennifer Clark"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/51613AEB-9CC1-53CF-90B993791222A9CB.jpg",
+          "title": "West Entrance to the Gateway Arch Visitor Center",
+          "caption": "Welcome to the Gateway Arch",
+          "credit": "NPS Photo/Sue Ford"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7BE38B-1DD8-B71B-0BBBE77BE3A2180A.jpg",
+          "title": "Gateway Arch",
+          "caption": "Over a million people visit the Gateway Arch each year.",
+          "credit": "NPS Photo/Sue Ford"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/347D5E5B-B4B0-917D-A3F2C03D113E911E.jpg",
+          "title": "Old Courthouse",
+          "caption": "The Old Courthouse",
+          "credit": "NPS photo/Jennifer Clark"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7BD9B5-1DD8-B71B-0B598216CE4E46D0.jpg",
+          "title": "Gateway Arch at Sunrise",
+          "caption": "The sunrise coming up behind the Gateway Arch.",
+          "credit": "NPS Photo/Sue Ford"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 0,
+      "hasLiveVideo": false,
+      "feeds": []
+    },
+    {
+      "name": "Glacier",
+      "code": "glac",
+      "region": "MT",
+      "category": "Scenic",
+      "detail": "A showcase of melting glaciers, alpine meadows, carved valleys, and spectacular lakes. With over 700 miles of trails, Glacier is...",
+      "webcamURL": "https://www.nps.gov/glac/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/C20E6CD3-CDF7-B3AB-8448CDCD7FD590FF.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C20E6CD3-CDF7-B3AB-8448CDCD7FD590FF.jpg",
+          "title": "Glacier Lilies near Logan Pass",
+          "caption": "Glacier lilies dot the landscape off the Highline Trail.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C19B20BB-C8CC-5BAB-22E3CA6AF9B2B67C.jpg",
+          "title": "St. Mary Falls",
+          "caption": "Glacier National Park is sculpted by water.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7FF648-1DD8-B71B-0B074AA63C93947A.jpg",
+          "title": "Lobby of the Lake McDonald Lodge",
+          "caption": "Lobby of the historic Lake McDonald Lodge",
+          "credit": "NPS Photo / Jacob W. Frank"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/656FC997-DD74-8921-C68040FE1A2CA8D2.jpg",
+          "title": "Alpine Sunset",
+          "caption": "Majestic Heavens Peak is easily viewed from the Going-to-the-Sun Road.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/89491DA7-0FDD-BDB9-D0D03D996091EA72.jpg",
+          "title": "Swiftcurrent Fire Lookout",
+          "caption": "The historic Swiftcurrent Lookout was built in a Swiss chalet architectural style.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C1C49B92-9BE9-6A08-F2C851A2A4ACEC8D.jpg",
+          "title": "East Side Sunset",
+          "caption": "Going-to-the-Sun Road in the St. Mary Valley",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8B6A7473-B676-45CC-5663F191736048A4.jpg",
+          "title": "Glacier's Night Sky",
+          "caption": "Glacier's dark sky is important to wildlife and people.",
+          "credit": "NPS Photo"
+        }
+      ],
+      "feedCount": 14,
+      "possibleFeedCount": 20,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Snowball the snowman",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/commonspot/customcf/webcam/inactive_webcam.png",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B468EE-1DD8-B71B-0BF58C8852F50CC5",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 35507h ago",
+          "available": false
+        },
+        {
+          "title": "Lake McDonald - 1",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/LakeMcDonald1.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4690A-1DD8-B71B-0B2D069E1CB02E6A",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Apgar Mountain",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/ApgarLookout-01.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4691B-1DD8-B71B-0BB9DBEE21A59335",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Apgar Village",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/ApgarVillage.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4692D-1DD8-B71B-0B9AE4B7C186B022",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Park Headquarters",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/Headquarters.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46943-1DD8-B71B-0B46D68861599592",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Middle Fork of the Flathead River",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/MiddleForkBridge.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46955-1DD8-B71B-0B698C4D88410C05",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "St. Mary Visitor Center",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/StMaryPTZ.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=AE7C9B53-910E-6D3A-D6133266826C6977",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Logan Pass Parking Lot",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/loganpark.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=57A6D720-C646-1727-688AC3D953C2AECF",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "Logan Pass Parking Lot",
+          "kind": "Still Webcam",
+          "imageURL": "https://glacier.org/webcam/lpp_nps.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=325AE6AF-BAEB-F65D-EF3D638BF683E78E",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "West Entrance",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/WestEntrance.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=33478DF3-1DD8-B71B-0B8C97DB0A03B0F7",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Two Medicine 1",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/TwoMedicine.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=1F7197E2-FF96-18D7-0AC05A501EBA2571",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 6081h ago"
+        },
+        {
+          "title": "Two Medicine PTZ",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/TwoMedicinePTZ.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=201E9B0D-C6C0-3D20-4C90C0CCFFDF6D73",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "Apgar 2",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/ApgarVillagePTZ.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=64C657CB-DE31-7B14-4E3946885805BD67",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "Logan Pass - 1",
+          "kind": "Still Webcam",
+          "imageURL": "https://glacier.org/webcam/hlt_nps.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=6E559311-9E10-3A12-2442A20797C7B6C6",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Lake McDonald - 2",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/lakemcdonaldptz.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=D428B88A-BC1A-A5BF-88E3D63CF89D3452",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Glacier Night Sky Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/stmaryallsky-resize.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=D4BDFE7E-AC7F-D681-8A03C820E06CBA0A",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "St. Mary Visitor Center - Dusty Star Observatory Sky Cam",
+          "kind": "Still Webcam",
+          "imageURL": "https://glacier.org/webcam/dark_sky_nps.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=FEBE3539-D0B5-B95A-B341B5A5C777FB9E",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Apgar Visitor Center Plaza",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-glac/ApgarVisitorCenter.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=7290EA71-A74E-A7B4-74805070A3996FAC",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Logan Pass 2",
+          "kind": "Still Webcam",
+          "imageURL": "https://glacier.org/webcam/smv_nps.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=7A5DA146-CE8D-E071-2C00362A062A3D0E",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Many Glacier",
+          "kind": "Still Webcam",
+          "imageURL": "https://glacier.org/webcam/mg_nps.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=2ABFE780-E817-D105-9B14697AEB43EBA6",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Grand Canyon",
+      "code": "grca",
+      "region": "AZ",
+      "category": "Scenic",
+      "detail": "Entirely within the state of Arizona, the park encompasses 278 miles (447 km) of the Colorado River and adjacent uplands. Located...",
+      "webcamURL": "https://www.nps.gov/grca/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7B12D1-1DD8-B71B-0BCE0712F9CEA155.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B12D1-1DD8-B71B-0BCE0712F9CEA155.jpg",
+          "title": "Grand Canyon Mather Point Sunset on the South Rim",
+          "caption": "People come from all over the world to view Grand Canyon's sunset",
+          "credit": "NPS/M.Quinn"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B15A4-1DD8-B71B-0BFADECB506765CC.jpg",
+          "title": "Grand Canyon National Park: Desert View Watchtower (South Rim)",
+          "caption": "The Watchtower is located at Desert View, the eastern-most developed area on the South Rim of Grand Canyon National Park.",
+          "credit": "NPS/M.Quinn"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B1720-1DD8-B71B-0B74DCF6F887A960.jpg",
+          "title": "Looking down the Colorado River from Nankoweap at river mile 53",
+          "caption": "A view down the Colorado river from Nankoweap in Marble canyon.",
+          "credit": "NPS/M.Quinn"
+        }
+      ],
+      "feedCount": 8,
+      "possibleFeedCount": 8,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Bright Angel Trailhead View",
+          "kind": "Still Webcam",
+          "imageURL": "https://cdn.pixelcaster.com/public.pixelcaster.com/snapshots/grandcanyon-1/latest.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=69E0162D-0ED1-F68A-6B52A11F95FD867B",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "South Entrance Station",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-grca/camera.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=9B5FC6BA-9FE6-EC6B-61637825D562D367",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "View from Jacob Lake, Arizona",
+          "kind": "Still Webcam",
+          "imageURL": "https://az511.com/map/Cctv/1351",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=B08B53F1-D1E6-7E94-3AAA19135F31B142",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "View from Kolb Studio",
+          "kind": "Still Webcam",
+          "imageURL": "https://cdn.pixelcaster.com/public.pixelcaster.com/snapshots/grandcanyon-2/latest.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=CC0CA1C7-E607-6F46-707E19938BBFEE63",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "San Francisco Peaks",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.weather.gov/images/fgz/webcam/camera1.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=348818A5-C6EE-66E7-41F5F43A4C334357",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "State Route 64 (Mile 213.9)",
+          "kind": "Still Webcam",
+          "imageURL": "https://az511.com/map/Cctv/702",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=692DB1BB-E2E6-22EC-034062D3C0C936B5",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Flagstaff, Arizona \u2014 I-40",
+          "kind": "Still Webcam",
+          "imageURL": "https://az511.com/map/Cctv/25--15",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=69687067-BE16-062D-2F789E22263AABA3",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "State Route 64 (Mile 235.15)",
+          "kind": "Still Webcam",
+          "imageURL": "https://az511.com/map/Cctv/709",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=7D6A3936-E1C5-C480-4FA08472583AA182",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Great Smoky Mountains",
+      "code": "grsm",
+      "region": "NC, TN",
+      "category": "Scenic",
+      "detail": "Ridge upon ridge of forest straddles the border between North Carolina and Tennessee in Great Smoky Mountains National Park. Worl...",
+      "webcamURL": "https://www.nps.gov/grsm/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C80E3F4-1DD8-B71B-0BFF4F2280EF1B52.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80E3F4-1DD8-B71B-0BFF4F2280EF1B52.jpg",
+          "title": "Frosty Morning in Cades Cove",
+          "caption": "Wintertime brings a quiet beauty to the Great Smoky Mountains.",
+          "credit": "Kristina Plaas"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80EC37-1DD8-B71B-0B87F63E8B030D15.jpg",
+          "title": "\"Smoke\" Rising From the Mountains",
+          "caption": "The park gets its name from mists that often rise like smoke from the mountains.",
+          "credit": "Kristina Plaas"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/62D22291-ECC1-C9C6-D4C249F41BC599CC.jpg",
+          "title": "Winter in the Smokies",
+          "caption": "The Smokies receives snow periodically throughout the winter, mostly at higher elevations.",
+          "credit": "NPS / Bob Carr"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80F02B-1DD8-B71B-0BBC2DFD4E9349E9.jpg",
+          "title": "The \"Wildflower National Park\"",
+          "caption": "Wildflowers, such as these white trillium, can be found blooming from February through November in the park.",
+          "credit": "Kristina Plaas"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80F1CC-1DD8-B71B-0B784AC1BCA74166.jpg",
+          "title": "Fall Colors Near Newfound Gap",
+          "caption": "Fall leaf season is one of the busiest times of year in the park.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80F6C9-1DD8-B71B-0B33F35922A21B3B.jpg",
+          "title": "Fall Meets Winter",
+          "caption": "In spring and fall, weather in the foothills can be pleasant, while snow and cold rule on the mountain tops.",
+          "credit": "Sam Hobbs"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80EEE2-1DD8-B71B-0BC2620AAA57D7CA.jpg",
+          "title": "The Waters of Roaring Fork Below Grotto Falls",
+          "caption": "Abundant rainfall means lush forests and beautiful stream scenes in the Great Smoky Mountains.",
+          "credit": "Danielle Austen, Artist-in-Residence 2015"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80EDBC-1DD8-B71B-0B743AF911FE7557.jpg",
+          "title": "A Foggy Morning at Cades Cove Methodist Church",
+          "caption": "Historic buildings such as churches, gristmills, barns, and homes allow visitors to get a feel for life in the mountains before the national park was created.",
+          "credit": "Kristina Plaas"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 5,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Kuwohi Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/featurecontent/ard/webcams/images/grcdlarge.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=BDFD47F3-1DD8-B71B-0B81AFE928DDCBCF",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 16h ago",
+          "available": false
+        },
+        {
+          "title": "Purchase Knob Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/featurecontent/ard/webcams/images/grpklarge.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=52E38701-AF1C-D2FC-3F23861BB6E221BB",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 16h ago"
+        },
+        {
+          "title": "Look Rock Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/featurecontent/ard/webcams/images/grsmlarge.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=6878C635-B83A-8F41-A6E3B0160539BEAA",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 16h ago"
+        },
+        {
+          "title": "Twin Creek Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/commonspot/customcf/webcam/inactive_webcam.png",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=29A53AEC-1DD8-B71B-0BC49F5DA731C317",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 35507h ago",
+          "available": false
+        },
+        {
+          "title": "Newfound Gap Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/featurecontent/ard/webcams/images/gsnglarge.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=C589EEEF-1DD8-B71B-0B0463C308FF64DD",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 16h ago"
+        }
+      ]
+    },
+    {
+      "name": "Hawai\u02bbi Volcanoes",
+      "code": "havo",
+      "region": "HI",
+      "category": "Volcano",
+      "detail": "Hawai\u2018i Volcanoes National Park protects some of the most unique geological, biological, and cherished cultural landscapes in the...",
+      "webcamURL": "https://www.nps.gov/havo/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/C4E8415A-08E5-5976-833F494FFCA3FFE6.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C4E8415A-08E5-5976-833F494FFCA3FFE6.jpg",
+          "title": "Halap\u0113",
+          "caption": "Coastline of Hawai\u02bbi Volcanoes National Park",
+          "credit": "Courtesy of J. Frank"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C5AEDF53-AE4A-F6DB-2FBA7BE158386C0E.jpg",
+          "title": "K\u012blauea Iki",
+          "caption": "Sunrise at K\u012blauea Iki",
+          "credit": "NPS Photo/J. Wei"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C5D3655B-BF42-2E22-8068376035581BB2.jpg",
+          "title": "H\u014dlei Pali",
+          "caption": "Lava flows from the Mauna Ulu eruption drape the H\u014dlei Pali",
+          "credit": "NPS Photo/A. LaValle"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C69391EE-FBFA-BC85-885A49C4BD5CEC8D.jpg",
+          "title": "Steam Vents",
+          "caption": "Wahinekapu (Steaming Bluff)",
+          "credit": "NPS Photo/A. LaValle"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C8E997AB-E2A8-0AE2-346A65CEE6B0FD30.jpg",
+          "title": "The Kahuku Unit",
+          "caption": "The Kahuku Unit of Hawai\u02bbi Volcanoes National Park once was one of the largest cattle ranches in Hawai\u02bbi",
+          "credit": "NPS Photo/A. LaValle"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C4C64AE6-092B-A593-7727CAE9487AC462.jpg",
+          "title": "Tide Pools",
+          "caption": "Tide pools along the Puna Coast",
+          "credit": "NPS Photo/A. LaValle"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C44A654D-DEFB-02B3-2EECDD47FA6BF2D8.jpg",
+          "title": "N\u0101huku",
+          "caption": "N\u0101huku (Thurston Lava Tube)",
+          "credit": "NPS Photo/D. Boyle"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/C524CE8E-BE01-B3D1-E9ED35AC2B79F2ED.jpg",
+          "title": "Lava Trees",
+          "caption": "Lava trees memorialize trees that once stood in the path of encroaching lava",
+          "credit": "NPS Photo/A. LaValle"
+        }
+      ],
+      "feedCount": 16,
+      "possibleFeedCount": 18,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Pu\u02bbu\u02bb\u014d\u02bb\u014d Southeast Coast",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/R3cam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=430C8380-8BB1-4917-B443-80875DDB9CE1",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 8267h ago"
+        },
+        {
+          "title": "Current Conditions of K\u012blauea Summit Eruption",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/V1cam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=BE0D095F-A635-DFBC-874A2E99F76898DD",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Live view of the upper Southwest Rift Zone of K\u012blauea",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/S1cam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=C8A35ACF-C302-AF3A-5B4086EEB669F711",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Live Image of Kaluapele (K\u012blauea caldera) from U\u0113kahuna bluff",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/K2cam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=C8F61201-BB93-4F34-ECBD63CB56715481",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "View of Halema\u02bbuma\u02bbu crater at the summit of K\u012blauea, view is to the west",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/cams/S2cam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=C954D561-D173-F216-1F7F97BCB24BB3B1",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "K\u012blauea Summit from Mauna Loa Strip Road- [KPcam]",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/cams/KPcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=CA194288-F226-EE43-8DE98FD5F20FC4FF",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Mauna Loa's Summit and Northeast Rift Zone from Mauna Kea [MKcam]",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/MKcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=CADD9583-AF7C-1DC8-FFC97C9F699D7A14",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Maunaulu Cam [MUcam]",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/MUcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=CAF65190-DBCA-1A22-29A80739FEFBC817",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Pu\u02bbu\u02bb\u014d\u02bb\u014d West Flank from Pu\u02bbu\u02bb\u014d\u02bb\u014d [PWcam]",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/PWcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=CB297CB0-CB5C-99F3-868877061AFB0B62",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "K\u012blauea's upper Southwest Rift Zone, looking northwest [MITDcam]",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/cams/MITDcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=CBF20C5F-EEA2-F4E0-1EBF6ADE74D2DABA",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Moku\u02bb\u0101weoweo Caldera Thermal [MTcam]",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/MTcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=3BFA7662-E5A8-E395-ABD45F3FF29D945E",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 1486h ago"
+        },
+        {
+          "title": "The Upper Part of Mauna Loa's Southwest Rift Zone [M3cam]",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/M3cam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=3C0FF559-A0C6-5407-2A0C33CD91A1D88B",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Halema\u02bbuma\u02bbu crater from the east rim and down-dropped block [V2cam]",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/cams/V2cam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=6AA1C994-BB25-26A1-A524367EA9E7D676",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Moku\u02bb\u0101weoweo Caldera from the Northwest Rim",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/MLcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=E1BA8F29-0BAF-52FE-229F39263A990800",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Middle Part of Mauna Loa's Southwest Rift Zone",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/M2cam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=EE01A0C2-D2E7-409E-2D8DE27D2F308C35",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Upper and Middle Parts of Mauna Loa's Southwest Rift Zone",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/cams/MDLcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=EE196017-AB32-9FD8-74239F3918E28F2C",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Northwest flank from Hual\u0101lai volcano",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/cams/HLcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=EE2AB5B3-D7D0-8A1E-8C719BFF988F87B1",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Pu\u02bbu\u02bb\u014d\u02bb\u014d East Flank from East of Pu\u02bbu\u02bb\u014d\u02bb\u014d",
+          "kind": "Still Webcam",
+          "imageURL": "https://volcanoes.usgs.gov/observatories/hvo/cams/PEcam/images/M.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=EDA334EA-BFA0-656C-A9D41EB152C2D683",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Katmai",
+      "code": "katm",
+      "region": "AK",
+      "category": "Wildlife",
+      "detail": "A landscape is alive underneath our feet, filled with creatures that remind us what it is to be wild. Katmai was established in 1...",
+      "webcamURL": "https://www.nps.gov/katm/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7A0FDB-1DD8-B71B-0B8933ACA92FE6B3.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A0FDB-1DD8-B71B-0B8933ACA92FE6B3.jpg",
+          "title": "Salmon jumping at Brooks Falls",
+          "caption": "Each year, 200,000 to 400,000 sockeye salmon jump Brooks Falls.",
+          "credit": "NPS/David Jacob"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A32DB-1DD8-B71B-0B37F66E9D0832AF.jpg",
+          "title": "Bear catching jumping salmon",
+          "caption": "In July, brown bears often stand on the lip of Brooks Falls to try to catch leaping salmon.",
+          "credit": "NPS/David Jacob"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A3473-1DD8-B71B-0B65158B5807CE0D.jpg",
+          "title": "Bear family walks near sleeping bear",
+          "caption": "Salmon streams in Katmai attract high numbers of brown bears.",
+          "credit": "NPS/Bryanna Plog"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A35BF-1DD8-B71B-0BB1644AA6CF4C8B.jpg",
+          "title": "Mount Katmai caldera",
+          "caption": "Mount Katmai's summit collapsed during the 1912 Novarupta-Katmai eruption. Today, the caldera is filled with a deep lake.",
+          "credit": "NPS/Roy Wood"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A3776-1DD8-B71B-0BB94C2392CD5B01.jpg",
+          "title": "sedge meadows and volcanoes at Hallo",
+          "caption": "Glacially clad volcanoes loom over the sedge meadows of Hallo Bay",
+          "credit": "NPS/Michael Fitz"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 1,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Brooks Falls Low",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.youtube.com/live/b6HFyBmGx28?si=9BgZxW1ECgw1deeh",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=685F9313-93FF-1D21-E468CD721933B65A",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "text/html; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "name": "Lassen Volcanic",
+      "code": "lavo",
+      "region": "CA",
+      "category": "Volcano",
+      "detail": "Lassen Volcanic National Park is home to steaming fumaroles, meadows freckled with wildflowers, clear mountain lakes, and numerou...",
+      "webcamURL": "https://www.nps.gov/lavo/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C873811-1DD8-B71B-0B9C62ED8E12E7B5.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C873811-1DD8-B71B-0B9C62ED8E12E7B5.jpg",
+          "title": "Winter at Manzanita Lake",
+          "caption": "With over 30 feet of snowfall annually, Lassen provides numerous opportunities for winter recreation.",
+          "credit": "NPS Photo / Scott Arnaz"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C8739BB-1DD8-B71B-0B8336A925B1A6C7.jpg",
+          "title": "Hat Creek",
+          "caption": "Lassen Volcanic's rugged volcanic landscape is softened by numerous meadows, lakes, and creeks.",
+          "credit": "NPS Photo / Amanda Sweeney"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C873B2E-1DD8-B71B-0B28C044BC4B9DC6.jpg",
+          "title": "Bumpass Hell",
+          "caption": "A 3-mile round-trip trail leads to Bumpass Hell, the largest of the park's hydrothermal areas.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C873CC3-1DD8-B71B-0B076FC2806DF140.jpg",
+          "title": "Brokeoff Panorama",
+          "caption": "Over 150 miles of trails let you choose your adventure.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C873E3A-1DD8-B71B-0BBD47F2E441D2F7.jpg",
+          "title": "Deep Blue",
+          "caption": "Lassen Peak stands out boldly between the bright blue sky and the sapphire hue of Lake Helen.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C874252-1DD8-B71B-0B6BC0D39B9A51C2.jpg",
+          "title": "A Fisherman's Paradise",
+          "caption": "Manzanita Lake offers spectacular catch-and-release fishing in the shadow of volcanoes.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C8743DC-1DD8-B71B-0B1DE16014F1A63F.jpg",
+          "title": "Lassen Peak Eruption",
+          "caption": "A large, explosive eruption of Lassen Peak brought national attention and set the stage for the establishment of Lassen Peak.",
+          "credit": "NPS Photo / B.F. Loomis"
+        }
+      ],
+      "feedCount": 1,
+      "possibleFeedCount": 2,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Manzanita Lake Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/commonspot/customcf/webcam/inactive_webcam.png",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4627F-1DD8-B71B-0BEBCC5B1768D617",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 35507h ago",
+          "available": false
+        },
+        {
+          "title": "Kohm Yah-mah-nee Visitor Center Webcam",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-lavo/kyvc_webcam1.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=9DFC6A5A-04A9-4982-806C-26C2B9FEC6D4",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Mammoth Cave",
+      "code": "maca",
+      "region": "KY",
+      "category": "Scenic",
+      "detail": "Rolling hills, deep river valleys, and the world's longest known cave system. Mammoth Cave National Park is home to thousands of...",
+      "webcamURL": "https://www.nps.gov/maca/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/95EAA431-F26B-66EB-E9E6B108F47F70B0.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/95EAA431-F26B-66EB-E9E6B108F47F70B0.jpg",
+          "title": "Waterfall at Historic Entrance",
+          "caption": "The sound of falling water welcomes visitors into the natural entrance of Mammoth Cave.",
+          "credit": "NPS Photo/ Deb Spillman"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/947D4300-ECE7-A506-8A6FF2BA4AECCFBB.jpg",
+          "title": "Historic Entrance",
+          "caption": "The Historic Entrance to Mammoth Cave has welcomed explorers for centuries.",
+          "credit": "NPS Photo/ Thomas DiGiovannangelo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/94A76787-FA1B-8DC8-71277FDFA5E7CC79.jpg",
+          "title": "Cleaveland Avenue",
+          "caption": "The network of cave passages in the Mammoth Cave system stretches over 400 miles.",
+          "credit": "NPS Photo/ Thomas DiGiovannangelo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/94F61E66-ACE7-ED8C-FC411F6BFDD80490.jpg",
+          "title": "Good Spring Baptist Church",
+          "caption": "Three historic church structures still stand, shedding light on the pre-park communities that once existed here.",
+          "credit": "NPS Photo/ Thomas DiGiovannangelo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/9472C6B0-DF25-7F27-BA8D162F34D2CB2F.jpg",
+          "title": "Heritage Trail",
+          "caption": "The half-mile Heritage Trail leads to panoramic views of the Green River.",
+          "credit": "NPS Photo/ Thomas DiGiovannangelo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/95357AD9-E6A5-DDCF-432D3E3832808431.jpg",
+          "title": "Green River Valley",
+          "caption": "Rolling hills and valleys can be seen from many of the overlooks in the park.",
+          "credit": "NPS Photo/ Thomas DiGiovannangelo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/958C8BC3-9657-7E73-D0697F507A869B69.jpg",
+          "title": "Gothic Avenue",
+          "caption": "Over two hundred years of guided tours leads to the history of Mammoth Cave.",
+          "credit": "NPS Photo/ Jackie Wheet"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 0,
+      "hasLiveVideo": false,
+      "feeds": []
+    },
+    {
+      "name": "Mesa Verde",
+      "code": "meve",
+      "region": "CO",
+      "category": "Scenic",
+      "detail": "For over 700 years, the Ancestral Pueblo people built thriving communities on the mesas and in the cliffs of Mesa Verde. Today, t...",
+      "webcamURL": "https://www.nps.gov/meve/learn/photosmultimedia/webcam.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7C0089-1DD8-B71B-0BC397BA671C0616.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C0089-1DD8-B71B-0BC397BA671C0616.jpg",
+          "title": "Cliff Palace",
+          "caption": "Cliff Palace, Mesa Verde's Largest Cliff Dwelling",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C0207-1DD8-B71B-0B74281D9C40EAB9.jpg",
+          "title": "Step House",
+          "caption": "Visitors enjoying Step House, on Wetherill Mesa",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C0371-1DD8-B71B-0B50861380661D68.jpg",
+          "title": "Balcony House",
+          "caption": "View of Balcony House from the Soda Canyon Overlook",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C04EC-1DD8-B71B-0BD94A784A808041.jpg",
+          "title": "Square Tower House",
+          "caption": "Square Tower House from overlook along the Mesa Top Loop",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C0716-1DD8-B71B-0B441C4B55F42D92.jpg",
+          "title": "View of Spruce Tree House",
+          "caption": "Spruce Tree House",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C0874-1DD8-B71B-0B223C1FF22A5351.jpg",
+          "title": "Spruce Tree House",
+          "caption": "Spruce Tree House, Mesa Verde's third largest and best preserved cliff dwelling",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/843DFA61-1DD8-B71B-0B2CA37EAC5F6718.jpg",
+          "title": "Mesa Verde Visitor and Research Center",
+          "caption": "Stop by the Mesa Verde Visitor & Research Center at the park entrance where park staff will help you plan your visit.",
+          "credit": "NPS Photo"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 1,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Spruce Tree House",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/uploads/cropped_image/primary/B6C6A046-F735-7C82-87ECCD7872E878CB.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46A88-1DD8-B71B-0B167518C73343F3",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 54274h ago",
+          "available": false
+        }
+      ]
+    },
+    {
+      "name": "Mount Rainier",
+      "code": "mora",
+      "region": "WA",
+      "category": "Scenic",
+      "detail": "Ascending to 14,410 feet above sea level, Mount Rainier stands as an icon in the Washington landscape. An active volcano, Mount R...",
+      "webcamURL": "https://www.nps.gov/mora/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/49F34094-B893-7DD6-5AE0F0220724B0EF.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/49F34094-B893-7DD6-5AE0F0220724B0EF.jpg",
+          "title": "Silver Forest Sunset",
+          "caption": "The Silver Forest Trail at Sunrise features spectacular views of Mount Rainier and the White River valley.",
+          "credit": "JD Hascup Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7CEEF2-1DD8-B71B-0B9F3B666327E5D1.jpg",
+          "title": "Climbing Mount Rainier",
+          "caption": "Summiting Mount Rainier involves climbing a volcano, scaling glaciers, dealing with high elevations and much more. Almost 10,000 people a year attempt to summit.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C6C47-1DD8-B71B-0BFF9108D08A7FD3.jpg",
+          "title": "Giants of the Old-Growth Forest",
+          "caption": "With some of the few remaining old-growth forests in the Cascade Mountains, Mount Rainier National Park protects native plants great and small in places like the Grove of the Patriarchs.",
+          "credit": "NPS Photo / Emily Brouwer"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C6D8C-1DD8-B71B-0BA69E7F583E25A5.jpg",
+          "title": "Marmot in Morning Dew",
+          "caption": "From small amphibians and hoary marmots to the black bears and elk, many animals call the wild places of Mount Rainier home.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7CECB5-1DD8-B71B-0B54548D95910CF4.jpg",
+          "title": "Kids Hiking Through Wildflower Meadow",
+          "caption": "Enjoying the outdoors through recreation is a big part of many visitors' experiences.",
+          "credit": "NPS Photo / Steve Redman"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C68E6-1DD8-B71B-0B42E9A3C7ECA52D.jpg",
+          "title": "Mount Rainier at sunset",
+          "caption": "Every scenic overlook shows a different side of Mount Rainier. Viewed from Gobblers Knob Lookout at sunset, the glaciers covering the mountain turn pink and gold.",
+          "credit": "NPS Photo / Emily Brouwer"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C6EE9-1DD8-B71B-0B62C52C6844CC70.jpg",
+          "title": "National Park Inn in Winter",
+          "caption": "For thousands of years, people have traveled up to, over, and around Mount Rainier. Today the park strives to preserve this history while providing a chance for new generations to find their own adventures.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7C6A93-1DD8-B71B-0BA75B16C5FA3690.jpeg",
+          "title": "Wildflower Meadow Along the Wonderland Trail",
+          "caption": "Both the Wonderland Trail and subalpine meadows encircle Mount Rainier. Summertime blooms splatter the hillsides with color.",
+          "credit": "NPS Photo/ K. Loving"
+        }
+      ],
+      "feedCount": 6,
+      "possibleFeedCount": 7,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Tatoosh",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-mora/tatoosh.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46402-1DD8-B71B-0B95C911C1395AAC",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Longmire",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-mora/longmire.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46445-1DD8-B71B-0BB0376A8482E275",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Mountain",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-mora/mountain.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46307-1DD8-B71B-0B72918A4B2EB790",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "East",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-mora/east.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B463D4-1DD8-B71B-0BB1FE8364315734",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Visitor Center",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-mora/gh.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B463F4-1DD8-B71B-0B9A136C52BCC56D",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Camp Muir East",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/commonspot/customcf/webcam/inactive_webcam.png",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=7E694512-03CE-2F70-6268044EFA517F8D",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 35507h ago",
+          "available": false
+        },
+        {
+          "title": "West",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-mora/west.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B463E4-1DD8-B71B-0B3E1F3743E9614D",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Olympic",
+      "code": "olym",
+      "region": "WA",
+      "category": "Water",
+      "detail": "With its incredible range of precipitation and elevation, diversity is the hallmark of Olympic National Park. Encompassing nearly...",
+      "webcamURL": "https://www.nps.gov/olym/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7B1DB4-1DD8-B71B-0B9DFEFDD398DB71.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B1DB4-1DD8-B71B-0B9DFEFDD398DB71.jpg",
+          "title": "Roosevelt Elk",
+          "caption": "A herd of Roosevelt Elk cross a river in Olympic.",
+          "credit": "NPS Photo/Jon Preston"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B20CD-1DD8-B71B-0B9ACC145EFE6B99.jpg",
+          "title": "Tide Pools of the Olympic Coast",
+          "caption": "Ocher sea stars rest on the rocks during a low tide on one of Olympic's beaches.",
+          "credit": "NPS Photo/Bill Baccus"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B1C43-1DD8-B71B-0B40240896925A49.jpg",
+          "title": "Mountain Sunset",
+          "caption": "Backpackers stop to enjoy a spectacular sunset in Olympic's high country.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B1F36-1DD8-B71B-0B367264CE3B4EE8.jpg",
+          "title": "Hurricane Ridge",
+          "caption": "A fresh layer of snow covers Hurricane Ridge in the Olympic Mountains.",
+          "credit": "NPS Photo/Dave Turner"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7B1A8C-1DD8-B71B-0B15D930BD8214F5.jpg",
+          "title": "Olympic Forest",
+          "caption": "Large trees and ferns inhabit the temperate forests of Olympic.",
+          "credit": "NPS Photo"
+        }
+      ],
+      "feedCount": 2,
+      "possibleFeedCount": 2,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Hurricane Ridge",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-olym/southcam.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46251-1DD8-B71B-0B29B9750DE273B5",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Hurricane Ridge Parking Lot",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-olym/hrparkinglot.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46260-1DD8-B71B-0B7A7B41BF33172A",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Petrified Forest",
+      "code": "pefo",
+      "region": "AZ",
+      "category": "Scenic",
+      "detail": "A landscape where deep time lies fully on display, Petrified Forest National Park blends colorful badlands, vast grasslands, and...",
+      "webcamURL": "https://www.nps.gov/pefo/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7D8213-1DD8-B71B-0BE4A3B9394FD89A.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D8213-1DD8-B71B-0BE4A3B9394FD89A.jpg",
+          "title": "Petrified Forest National Wilderness Area",
+          "caption": "Sunrise and sunset are favorite times to view the colorful Painted Desert of the Petrified Forest National Wilderness Area",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D83C9-1DD8-B71B-0B294D0F9ABC4B94.jpg",
+          "title": "Painted Desert Inn National Historic Landmark",
+          "caption": "Sunset lights up the Painted Desert Inn National Historic Landmark west side.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D8582-1DD8-B71B-0BCCD89452609E15.jpg",
+          "title": "Agate House",
+          "caption": "Agate House was built over 900 years ago out of pieces of petrified wood",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C85B076-1DD8-B71B-0BE0B8C88713C5B1.jpg",
+          "title": "Puerco Pueblo",
+          "caption": "Masonry wall remnants are all that are left of a hundred room pueblo.",
+          "credit": "NPS Photo/Andrew V. Kearns"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C85B554-1DD8-B71B-0BA79402AD7E7711.jpg",
+          "title": "Blue Mesa Trail",
+          "caption": "Visitors enjoy the otherworldly walk along the Blue Mesa.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C85C078-1DD8-B71B-0BD76F126AAEA9B3.jpg",
+          "title": "Jasper Forest",
+          "caption": "Jasper Forest has some of the most colorful logs in the park.",
+          "credit": "NPS Photo/Andrew V. Kearns"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C85C3CB-1DD8-B71B-0B296F95FC7E1D8C.jpg",
+          "title": "Summer Solstice Petroglyph at Puerco Pueblo",
+          "caption": "A petroglyph at Puerco Pueblo interacts with the sunlight on the summer solstice.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C85C4E0-1DD8-B71B-0B7C5271FF8EF1B7.jpg",
+          "title": "Mountain Lion Petroglyph",
+          "caption": "This ancient petroglyph of a mountain lion has become an icon of the park.",
+          "credit": "NPS Photo/Stuart Holmes"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 1,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Webcam at the Painted Desert Inn National Historic Landmark",
+          "kind": "Still Webcam",
+          "imageURL": "https://192.1681.1.197:80/544",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46C72-1DD8-B71B-0BDC8D1824EBB9A7",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "<urlopen error [Errno 8] nodename nor servname provided, or not known>"
+        }
+      ]
+    },
+    {
+      "name": "Redwood",
+      "code": "redw",
+      "region": "CA",
+      "category": "Wildlife",
+      "detail": "Renowned for the world\u2019s tallest trees, Redwood\u2019s landscapes span from open prairies and oak woodlands to pristine rivers and unt...",
+      "webcamURL": "https://www.nps.gov/redw/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/CD69DD56-E050-4F4E-DDF622317D38250E.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/CD69DD56-E050-4F4E-DDF622317D38250E.jpg",
+          "title": "Fish-eye view of Redwood canopy",
+          "caption": "The redwood forest is a complicated and beautiful series of habitats.",
+          "credit": "NPS Photo / Steve Olson"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/13FB649C-1DD8-B71B-0B50D0E826025619.jpg",
+          "title": "Howland Hill Road",
+          "caption": "With a small car, you can expericne close-up Redwoods along a century old, narrow road.",
+          "credit": ""
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/13C2D9FD-1DD8-B71B-0B3C56643E2A396D.jpg",
+          "title": "Tide pooling at Enderts Beach",
+          "caption": "We have forty miles of coastline to explore.",
+          "credit": "NPS Photo / John Chao"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/6B440E44-1DD8-B71B-0B6E95D9C432231F.jpg",
+          "title": "Visitors Plan Their Redwood Trip",
+          "caption": "A great redwood trip starts with good trip planning.",
+          "credit": "NPS: John Chao"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/13E30047-1DD8-B71B-0B03D2E0CECCE8AD.jpg",
+          "title": "Ranger Program at Klamath River Overlook",
+          "caption": "Coastal overlooks provide amazing places to whale watch.. and more.",
+          "credit": "NPS Photo / John Chao"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/CCDEEABE-CDBA-3C8D-B3E050B3DE5B0B55.jpg",
+          "title": "Visitors on walkway to Lady Bird Johnson Grove",
+          "caption": "Visitors to the Lady Bird Johnson Grove cross a road using a walkway.",
+          "credit": "NPS Photo / Steve Olson"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/6B56ACA8-1DD8-B71B-0BB0C6228E534168.jpg",
+          "title": "A New Junior Ranger",
+          "caption": "Becoming a junior ranger at Redwoods is a fun and educational for the whole family.",
+          "credit": "NPS: John Chao"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/1427B3E7-1DD8-B71B-0BFA87FE718FB3A6.jpg",
+          "title": "\"Big Tree\" wayside.",
+          "caption": "For those short of time, the \"Big Tree\" offers easy access for all to a very photogenic tree.",
+          "credit": "NPS Photo / John Chao"
+        }
+      ],
+      "feedCount": 4,
+      "possibleFeedCount": 4,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Bald Hills & Redwood Creek",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-redw/Bald_Hills.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=02E6B14D-AF74-6C67-7AF43C0AC3FA23CE",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Jedediah Smith Redwoods State Park",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-redw/Jed_Smith.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=BB7B050A-BE3B-E7FE-BFED58CB2E874B0F",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Thomas H. Kuchel Visitor Center",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-redw/KVC_Pacific_Ocean.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=BD37BB78-0E56-34CE-3270526D6CCC87CA",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Elk Prairie at Prairie Creek Redwoods State Park",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-redw/Elk_Prairie.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=7553A227-AAEA-6A87-2496155B0FB5BE97",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Rocky Mountain",
+      "code": "romo",
+      "region": "CO",
+      "category": "Scenic",
+      "detail": "Rocky Mountain National Park's 415 square miles (265,807 acres) encompasses a spectacular range of mountain environments. From me...",
+      "webcamURL": "https://www.nps.gov/romo/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/84D344F9-BB2D-B929-9902E50D96500616.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/84D344F9-BB2D-B929-9902E50D96500616.jpg",
+          "title": "Rocky Mountain National Park Sign",
+          "caption": "Rocky Mountain National Park Sign",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/84E3C876-FF13-8444-4234EAD8566CE1D8.jpg",
+          "title": "Enjoy scenic views",
+          "caption": "Enjoy scenic views",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/84F95D97-E058-E8E5-2FCBBCCE1AD83EC2.jpg",
+          "title": "Take a Hike",
+          "caption": "Enjoy a hike and be prepared for snow and ice on all high elevation trails",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/8508C870-F18F-A7EF-971BD2D6C86D56E6.jpg",
+          "title": "Attend a Ranger-led Program or Activity",
+          "caption": "Rocky has many ranger-led programs and activities available",
+          "credit": "NPS Photo"
+        }
+      ],
+      "feedCount": 6,
+      "possibleFeedCount": 7,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Alpine Visitor Center",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-romo/alpine_visitor_center.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4681E-1DD8-B71B-0B8311E4FAC15EF4",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "Kawuneeche Valley",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-romo/kawuneeche_valley.jpeg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4682A-1DD8-B71B-0BBC127D2E00ACD9",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Continental Divide",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-romo/glacier_basin.jpeg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4683A-1DD8-B71B-0B01974CAAE7F372",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Longs Peak",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-romo/longs_peak.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46847-1DD8-B71B-0B46D032F33B54DF",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Fall River Entrance/U.S. Hwy 34",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-romo/fre.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46856-1DD8-B71B-0B8636427EFFC938",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Beaver Meadows Entrance/U.S. Hwy 36",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-romo/bme.jpeg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4686B-1DD8-B71B-0B122CB864D072FC",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Grand Lake Entrance/ U.S. Hwy 34",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-romo/Grand_Lake_Entrance.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=3F33B673-957B-51DD-612B99E4A9FDF417",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Sequoia & Kings Canyon",
+      "code": "seki",
+      "region": "CA",
+      "category": "Scenic",
+      "detail": "Huge mountains, rugged foothills, deep canyons, vast caverns, and the world\u2019s largest trees exemplify the diversity of landscapes...",
+      "webcamURL": "https://www.nps.gov/seki/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7A250B-1DD8-B71B-0BCF61A89A8B2970.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A250B-1DD8-B71B-0BCF61A89A8B2970.jpg",
+          "title": "Kings Canyon",
+          "caption": "The Glaciers carved the Kings Canyon's steep granite cliffs, leaving a wide U-shaped valley.",
+          "credit": "NPS/Rick Cain"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A2835-1DD8-B71B-0B468E834049FBE4.jpg",
+          "title": "The Tablelands",
+          "caption": "Just above Lodgepole Valley, the trail to the Watchtower offers views above the treeline.",
+          "credit": "NPS/Rick Cain"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A2E1B-1DD8-B71B-0B4D563CB47FA60F.jpg",
+          "title": "Moro Rock",
+          "caption": "A historic stairway leads to the top of Moro Rock, offering views from foothills to peaks",
+          "credit": "NPS/Paul Johnson"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A301B-1DD8-B71B-0B8311F9B0AC4F69.jpg",
+          "title": "Giant Sequoia in Winter",
+          "caption": "For those who don't mind icy roads, winter offers stunning views of sequoias in snow.",
+          "credit": "NPS"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7A4E3C-1DD8-B71B-0B99ADC8D2689BDE.jpg",
+          "title": "Giant Forest Museum",
+          "caption": "Giant Forest Museum offers exhibits, park information, and a bookstore.",
+          "credit": "NPS/Rick Cain"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 0,
+      "hasLiveVideo": false,
+      "feeds": []
+    },
+    {
+      "name": "Shenandoah",
+      "code": "shen",
+      "region": "VA",
+      "category": "Scenic",
+      "detail": "Just 75 miles from the bustle of Washington, D.C., Shenandoah National Park is a land bursting with cascading waterfalls, spectac...",
+      "webcamURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46B71-1DD8-B71B-0B55074571E08B1E",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C80B539-1DD8-B71B-0BEAAA4AC31E7D5B.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80B539-1DD8-B71B-0BEAAA4AC31E7D5B.jpg",
+          "title": "Adventure Awaits",
+          "caption": "There are over 60 peaks with an elevation over 3,000 feet in Shenandoah.",
+          "credit": "NPS Photo / Neal Lewis"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80B63B-1DD8-B71B-0BAC3145E329FC99.jpg",
+          "title": "Wonderful Waterfalls",
+          "caption": "Dark Hollow Falls, at 70 feet, is our most visited waterfall.",
+          "credit": "NPS Photo / Katy Cain"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80B752-1DD8-B71B-0B0FAB718671DC3E.jpg",
+          "title": "Red-Bellied Woodpecker",
+          "caption": "There are over 200 species of bird that call Shenandoah \"home.\"",
+          "credit": "NPS Photo / Neal Lewis"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80B867-1DD8-B71B-0B328321E4420769.jpg",
+          "title": "Driving on Skyline Drive",
+          "caption": "There are 105 miles to explore on Skyline Drive.",
+          "credit": "NPS Photo / Neal Lewis"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C80B989-1DD8-B71B-0B3A418BF2F78CF0.jpg",
+          "title": "Find Yourself in Nature",
+          "caption": "This poplar stand at mile 8 is a popular stop for visitors entering from the north entrance.",
+          "credit": "NPS Photo / Katy Cain"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 2,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Big Meadows",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-shen/bvc2.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46B99-1DD8-B71B-0B124A40CC3384CE",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "Mountain View Cam",
+          "kind": "Still Webcam",
+          "imageURL": "https://phenocam.nau.edu/data/latest/shenandoah.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46B71-1DD8-B71B-0B55074571E08B1E",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 7h ago"
+        }
+      ]
+    },
+    {
+      "name": "Wrangell - St Elias",
+      "code": "wrst",
+      "region": "AK",
+      "category": "Scenic",
+      "detail": "Wrangell-St. Elias is a vast national park that rises from the ocean all the way up to 18,008 ft. At 13.2 million acres, the park...",
+      "webcamURL": "https://www.nps.gov/thingstodo/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7AAD63-1DD8-B71B-0BCE10FFD741A687.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7AAD63-1DD8-B71B-0BCE10FFD741A687.jpg",
+          "title": "Icy Bay with Mt. St. Elias",
+          "caption": "Wrangell-St. Elias National Park contains a diversity of natural features.  Landscapes unique to the North American continent are common here.",
+          "credit": "NPS Photo/ Neal Herbert"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7AAC04-1DD8-B71B-0B6534785C41D6B5.jpg",
+          "title": "Backpackers in Mentasta Mountains",
+          "caption": "Wrangell-St. Elias National Park is a backpacker's paradise.  A variety of routes take you into beautiful country, including the Mentasta Mountains.",
+          "credit": "NPS Photo/ Bryan Petrtyl"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7AB124-1DD8-B71B-0B224A3B96A7304E.jpg",
+          "title": "Kennecott Mill Town",
+          "caption": "Kennecott Mines National Historic Landmark is found within Wrangell-St. Elias National Park.  This early 1900's copper mining operation overcame numerous challenges and found success in the heart of the Alaskan wilderness.",
+          "credit": "NPS Photo/ Matthew Yarbrough"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7AB2FD-1DD8-B71B-0BC380F8D220B0BA.jpg",
+          "title": "Logan Glacier",
+          "caption": "Wrangell-St. Elias National Park contains the greatest concentration of glaciers in North America.  More than 3000 glaciers covering over three million acres of land are found in the park.",
+          "credit": "NPS Photo/ Bryan Petrtyl"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7AB5F0-1DD8-B71B-0B0A0B409DEAB3ED.jpg",
+          "title": "Wrangell Mountains",
+          "caption": "The Wrangell Mountains dominate the view of the northern half of the park.   This range lies entirely within the park and reaches 16,390 ft (4,996 m) in height.",
+          "credit": "NPS Photo/ Bryan Petrtyl"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/9DC3E3D5-D69E-D0CC-CB5DDBE505175B32.jpg",
+          "title": "Copper Center Visitor Center",
+          "caption": "Copper Center Visitor Center",
+          "credit": "National Park Service"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/9DCBE069-A954-BD79-5281A59DC8A04EDE.jpg",
+          "title": "Slana Ranger Station",
+          "caption": "Slana Ranger Station",
+          "credit": "National Park Service"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/9DD39775-F416-41FB-469ABEA4388BD8F2.jpg",
+          "title": "Chitina Ranger Station",
+          "caption": "Chitina Ranger Station",
+          "credit": "National Park Service"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 3,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Kennecott Mill and Mt. Blackburn",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-wrst/KennecottNorth.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=51F606E1-BAF1-472B-2BC7D21ED4CDA08E",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "Kennicott Glacier and the Chugach Range",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-wrst/KennecottSouth.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=5224B014-CBDE-5E14-DEF34EBF65E78E88",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        },
+        {
+          "title": "Wrangell Mountains from Park Headquarters",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-wrst/HQVC.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=F91F11B2-C421-28C4-16C717FF1FF2CB72",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "HTTP Error 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "name": "Yellowstone",
+      "code": "yell",
+      "region": "ID, MT, WY",
+      "category": "Scenic",
+      "detail": "On March 1, 1872, Yellowstone became the first national park for all to enjoy the unique hydrothermal wonders. Today, millions of...",
+      "webcamURL": "https://www.nps.gov/yell/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C7D5920-1DD8-B71B-0B83F012ED802CEA.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D5920-1DD8-B71B-0B83F012ED802CEA.jpg",
+          "title": "Grand Prismatic Spring",
+          "caption": "The bright colors found in Grand Prismatic Spring come from thermophiles\u2014microorganisms that thrive in hot temperatures",
+          "credit": "NPS/Jim Peaco"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D2FBB-1DD8-B71B-0BED99731011CFCE.jpg",
+          "title": "Aurum Geyser",
+          "caption": "Aurum Geyser erupting",
+          "credit": "NPS/Jim Peaco"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D383B-1DD8-B71B-0BEC4A4D6BDF7CAD.jpg",
+          "title": "Black Pool",
+          "caption": "Black Pool at the West Thumb Geyser Basin",
+          "credit": "NPS/Diane Renkin"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D334F-1DD8-B71B-0B108C7771F4E854.jpg",
+          "title": "Beehive Geyser",
+          "caption": "Visitors to the Upper Geyser Basin watch Beehive Geyser erupt.",
+          "credit": "NPS/Jim Peaco"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D3BD3-1DD8-B71B-0BB607F9BAAE1271.jpg",
+          "title": "Wolf howling",
+          "caption": "Alpha male of the Canyon wolf pack",
+          "credit": "NPS/Jim Peaco"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D573E-1DD8-B71B-0B5C0DF5BB91D043.jpg",
+          "title": "Fishing Bridge Trailside Museum",
+          "caption": "The stone-and-log architecture of Fishing Bridge Trailside Museum became a prototype for park buildings all around the country",
+          "credit": "NPS/Jim Peaco"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D5AB4-1DD8-B71B-0BF91CF45345ED16.jpg",
+          "title": "Great Fountain Geyser",
+          "caption": "Great Fountain Geyser erupts against a blue summer sky",
+          "credit": "NPS/Diane Renkin"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C7D610A-1DD8-B71B-0BEF676112007818.jpg",
+          "title": "Old Faithful Geyser in winter",
+          "caption": "Winter is a magical time to watch Old Faithful Geyser erupt",
+          "credit": "NPS/Jim Peaco"
+        }
+      ],
+      "feedCount": 10,
+      "possibleFeedCount": 10,
+      "hasLiveVideo": true,
+      "feeds": [
+        {
+          "title": "Old Faithful & Upper Geyser Basin Livestream",
+          "kind": "Live HLS",
+          "imageURL": "",
+          "streamURL": "https://cs7.pixelcaster.com/nps/faithful.stream/playlist_dvr.m3u8",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=CE843A37-74A2-4408-9176-26A8DCC97294",
+          "sourceStatus": "Inactive",
+          "apiStreaming": true,
+          "availabilityNote": "Available",
+          "available": true
+        },
+        {
+          "title": "Mount Washburn - Northeastern View",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/washburn_ne.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46891-1DD8-B71B-0B6575944D4DECD5",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "North Entrance - Electric Peak",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/mammoth_electric.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B468AB-1DD8-B71B-0BE84D8E8E0F1112",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "North Entrance - Out of the Park",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/mammoth_arch.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B468BC-1DD8-B71B-0BBA4C383E179188",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "West Entrance - Out of the Park",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/west_gate.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B468C8-1DD8-B71B-0BFE5983E4D2E421",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "West Entrance - Into the Park",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/west_into.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B468D6-1DD8-B71B-0B9C2E324EF5F9F8",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Mammoth Hot Springs - Travertine Terraces",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/mammoth_parade.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=696F20E1-F421-B232-FE72D6D85B157422",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Mount Washburn - Southern View",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/washburn_sw.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B4689E-1DD8-B71B-0B8741319EA29FD3",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "East Entrance - Out of Park",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/east_out.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=45FDA0AC-0A10-4ACA-A0C6-44F440575AE1",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "East Entrance - Into Park",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-yell/east_in.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=E3772256-9585-4859-A1FD-FC47F15F7226",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Yosemite",
+      "code": "yose",
+      "region": "CA",
+      "category": "Water",
+      "detail": "Not just a great valley, but a shrine to human foresight, the strength of granite, the power of glaciers, the persistence of life...",
+      "webcamURL": "https://www.nps.gov/yose/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/3C84CC4C-1DD8-B71B-0BE967E5E5D93F25.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C84CC4C-1DD8-B71B-0BE967E5E5D93F25.jpg",
+          "title": "Yosemite Falls on a Winter Morning",
+          "caption": "Yosemite Falls will sometimes only trickle at the end of summer, but wet winters can rejuvenate the flow.",
+          "credit": "NPS / Cindy Jacoby"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/05383E91-AA28-2DDC-AB517507594F9FA6.jpg",
+          "title": "Upper Yosemite Fall and Merced River in spring",
+          "caption": "Upper Yosemite Fall and Merced River in spring",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C84C6CF-1DD8-B71B-0B1C7CB883AA8FB1.jpg",
+          "title": "Rainbow over Half Dome",
+          "caption": "A hike up to Sentinel Dome rewards people with great views of the landscape around them.",
+          "credit": "NPS / Bob Roney"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C84C3C0-1DD8-B71B-0BFF90B64283C3D8.jpg",
+          "title": "Cathedral Peak and Lake in Autumn",
+          "caption": "Cathedral Peak is one of the most recognizable peaks in the Yosemite Wilderness.",
+          "credit": "NPS / Cindy Jacoby"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C84CDD0-1DD8-B71B-0B6E5868AFC75B6B.jpg",
+          "title": "Lower Yosemite Fall",
+          "caption": "The walk to Lower Yosemite Fall is a popular and easy hike.",
+          "credit": "NPS Photo / Cindy Jacoby"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/232C02DC-BE31-0C6D-E1E2D2FB1EE7E251.jpg",
+          "title": "View of Yosemite Valley in Winter",
+          "caption": "A rewarding view of Yosemite Valley in winter as seen from Tunnel View.",
+          "credit": "NPS Photo"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C84CAEC-1DD8-B71B-0BA0EEA50BB40F8B.jpg",
+          "title": "Yosemite Valley from Tunnel View",
+          "caption": "Tunnel View is perhaps one of the most photographed views in the park.",
+          "credit": "NPS / Cindy Jacoby"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/3C84C82D-1DD8-B71B-0B8D6902B62369E2.jpg",
+          "title": "Glen Aulin",
+          "caption": "Glen Auilin is one of five High Sierra Camps, located in the Yosemite high country.",
+          "credit": "NPS"
+        }
+      ],
+      "feedCount": 3,
+      "possibleFeedCount": 7,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Merced River at Happy Isles",
+          "kind": "Still Webcam",
+          "imageURL": "https://usgs-nims-images.s3.amazonaws.com/overlay/CA_Merced_River_at_Happy_Isles_Bridge_Yosemite/CA_Merced_River_at_Happy_Isles_Bridge_Yosemite_newest.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46521-1DD8-B71B-0BB6424139EC91BE",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 4h ago"
+        },
+        {
+          "title": "Yosemite High Sierra",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/common/commonspot/customcf/webcam/inactive_webcam.png",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=50E781A7-99A4-27F7-3773DF1DBB57C0FC",
+          "sourceStatus": "Inactive",
+          "apiStreaming": false,
+          "availabilityNote": "Stale image: updated 35507h ago",
+          "available": false
+        },
+        {
+          "title": "Half Dome",
+          "kind": "Still Webcam",
+          "imageURL": "https://pixelcaster.com/yosemite/webcams/ahwahnee2.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=510DED3A-F9E0-3BCC-3A896F980BE05DFE",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "El Capitan",
+          "kind": "Still Webcam",
+          "imageURL": "https://pixelcaster.com/yosemite/webcams/turtleback.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=521123D5-0EA2-C472-403A8D58B11A614F",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        },
+        {
+          "title": "Yosemite Falls",
+          "kind": "Live HLS",
+          "imageURL": "",
+          "streamURL": "https://cs7.pixelcaster.com/nps/yosfalls.stream/playlist_dvr.m3u8",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=3E81EC42-BB62-0A59-E30ABB8F1646322E",
+          "sourceStatus": "Active",
+          "apiStreaming": true,
+          "available": false,
+          "availabilityNote": "HTTP Error 404: Not Found"
+        },
+        {
+          "title": "Half Dome",
+          "kind": "Live HLS",
+          "imageURL": "",
+          "streamURL": "https://cs7.pixelcaster.com/nps/halfdome.stream/playlist_dvr.m3u8",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=EAA24FCD-BC0D-C360-19BF30B462D0ACE8",
+          "sourceStatus": "Active",
+          "apiStreaming": true,
+          "available": false,
+          "availabilityNote": "HTTP Error 404: Not Found"
+        },
+        {
+          "title": "Badger Pass Ski Area",
+          "kind": "Still Webcam",
+          "imageURL": "https://pixelcaster.com/aramark/yosemite-ski.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46503-1DD8-B71B-0BABF33689031F0B",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": true,
+          "availabilityNote": "Available"
+        }
+      ]
+    },
+    {
+      "name": "Zion",
+      "code": "zion",
+      "region": "UT",
+      "category": "Scenic",
+      "detail": "Follow the paths where people have walked for thousands of years. Gaze up at massive sandstone cliffs of cream, pink, and red tha...",
+      "webcamURL": "https://www.nps.gov/zion/learn/photosmultimedia/webcams.htm",
+      "heroImageURL": "https://www.nps.gov/common/uploads/structured_data/68BFC1AC-BF96-629F-89D261D78F181C64.jpg",
+      "postImages": [
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/68BFC1AC-BF96-629F-89D261D78F181C64.jpg",
+          "title": "The Watchman",
+          "caption": "The Watchman in Zion Canyon",
+          "credit": "NPS/Shane Carte"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/69162F54-D4AF-8695-A42F97A8F9774C19.jpg",
+          "title": "The Towers of the Virgin",
+          "caption": "The Towers of the Virgin in Zion Canyon",
+          "credit": "NPS/Jesse Nelson"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/68D46E7D-A116-A443-ABA04AD1DD785208.jpg",
+          "title": "Zion Canyon Visitor Center",
+          "caption": "The Zion Canyon Visitor Center is a great place to stop to learn about the park!",
+          "credit": "NPS"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/68ED8C2C-A9D3-90B2-BBC96E7A21BC3744.jpg",
+          "title": "The Narrows",
+          "caption": "The Narrows can be accessed at the end of Riverside Walk, just follow the river.",
+          "credit": "NPS"
+        },
+        {
+          "url": "https://www.nps.gov/common/uploads/structured_data/69033C8D-B439-855D-6B260FB2F4CDB53B.jpg",
+          "title": "Kolob Arch",
+          "caption": "Deep in Zion's Wilderness site Kolob Arch, one of the largest free-standing arches in the world.",
+          "credit": "NPS"
+        }
+      ],
+      "feedCount": 0,
+      "possibleFeedCount": 2,
+      "hasLiveVideo": false,
+      "feeds": [
+        {
+          "title": "Temples And Towers of the Virgin",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-zion/camera2.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=A4068FB2-DB05-82B5-F242852BBAA0A971",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 4859h ago"
+        },
+        {
+          "title": "South Gate Entrance",
+          "kind": "Still Webcam",
+          "imageURL": "https://www.nps.gov/webcams-zion/southgate.jpg",
+          "streamURL": "",
+          "sourceURL": "https://www.nps.gov/media/webcam/view.htm?id=81B46CC4-1DD8-B71B-0B1B52AAF5930623",
+          "sourceStatus": "Active",
+          "apiStreaming": false,
+          "available": false,
+          "availabilityNote": "Stale image: updated 5155h ago"
+        }
+      ]
+    }
+  ]
+}

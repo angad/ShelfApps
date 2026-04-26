@@ -1,0 +1,89 @@
+# macOS
+.DS_Store
+
+# Local secrets
+.env
+.env.*
+!.env.example
+.gitignore.local
+
+# Public release app allowlist
+apps/*
+!apps/Bookshelf/
+!apps/Bookshelf/**
+!apps/CityCams/
+!apps/CityCams/**
+!apps/DriveDash/
+!apps/DriveDash/**
+!apps/NetworkWall/
+!apps/NetworkWall/**
+!apps/OverheadFlight/
+!apps/OverheadFlight/**
+!apps/ParkCams/
+!apps/ParkCams/**
+
+# Xcode / XcodeGen generated output
+*.xcodeproj/
+*.xcworkspace/
+DerivedData/
+build/
+*/build/
+**/build/
+
+# iOS packaging output
+Payload/
+*/Payload/
+**/Payload/
+*.ipa
+*.app
+*.dSYM/
+*.xcarchive/
+
+# Local signing / generated binary leftovers
+*.vtool
+a.out
+
+# App-local secrets bundled for private device builds
+apps/Bookshelf/Bookshelf/ThriftBooksCookies.json
+
+# Local private device workflow
+scripts/install_j*_usb.sh
+skills/
+
+# Local non-release app companion scripts
+scripts/skyradar_feed.py
+
+# Python generated files
+__pycache__/
+*/__pycache__/
+**/__pycache__/
+*.pyc
+
+# Device diagnostics and pulled device files
+*.log
+*.ips
+*.ips.ca
+*_syslog*.txt
+device_crashes/
+device_crashes_latest/
+device_media/
+diagnostics/
+*/diagnostics/
+**/diagnostics/
+
+# Large local media / ROM files
+*.z64
+*.n64
+*.v64
+
+# Editor noise
+.vscode/
+.idea/
+*.swp
+*.swo
+**/.DS_Store
+
+# ParkCams source helpers kept for public manifest refreshes
+!apps/ParkCams/Diagnostics/
+apps/ParkCams/Diagnostics/*.json
+!apps/ParkCams/Diagnostics/*.py

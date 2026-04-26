@@ -1,0 +1,25 @@
+name: NetworkWall
+options:
+  bundleIdPrefix: com.angad
+  deploymentTarget:
+    iOS: "12.0"
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: "12.0"
+    ENABLE_BITCODE: "NO"
+    SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+    SUPPORTS_MACCATALYST: "NO"
+targets:
+  NetworkWall:
+    type: application
+    platform: iOS
+    sources:
+      - NetworkWall
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.angad.networkwall
+        PRODUCT_NAME: NetworkWall
+        INFOPLIST_FILE: NetworkWall/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""

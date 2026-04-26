@@ -1,0 +1,32 @@
+name: CityCams
+options:
+  bundleIdPrefix: com.angad
+  deploymentTarget:
+    iOS: "12.0"
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: "12.0"
+    ENABLE_BITCODE: "NO"
+    ENABLE_DEBUG_DYLIB: "NO"
+    SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+    SUPPORTS_MACCATALYST: "NO"
+targets:
+  CityCams:
+    type: application
+    platform: iOS
+    sources:
+      - CityCams
+    dependencies:
+      - sdk: AVFoundation.framework
+      - sdk: AVKit.framework
+      - sdk: CoreLocation.framework
+      - sdk: MapKit.framework
+      - sdk: QuartzCore.framework
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.angad.citycams
+        PRODUCT_NAME: CityCams
+        INFOPLIST_FILE: CityCams/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
