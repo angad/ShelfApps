@@ -16,6 +16,7 @@ targets:
     sources:
       - DriveDash
     dependencies:
+      - sdk: AVFoundation.framework
       - sdk: CoreLocation.framework
       - sdk: CoreMotion.framework
     settings:

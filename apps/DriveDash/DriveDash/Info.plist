@@ -44,6 +44,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>DriveDash uses GPS to show speed, trip distance, coordinates, altitude, and heading while you drive.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>DriveDash uses the camera torch as a manual flashlight button.</string>
 	<key>UILaunchImages</key>
 	<array>
 		<dict>

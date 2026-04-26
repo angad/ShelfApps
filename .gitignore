@@ -21,6 +21,8 @@ apps/*
 !apps/OverheadFlight/**
 !apps/ParkCams/
 !apps/ParkCams/**
+!apps/PocketLab/
+!apps/PocketLab/**
 
 # Xcode / XcodeGen generated output
 *.xcodeproj/

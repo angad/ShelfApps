@@ -1,4 +1,5 @@
 #import "DashboardViewController.h"
+#import <AVFoundation/AVFoundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
 #import <math.h>
@@ -13,6 +14,9 @@ static const CLLocationSpeed DDStationarySpeedThreshold = 2.24; // 5 mph
 static const CLLocationAccuracy DDGoodHorizontalAccuracy = 35.0;
 static const CLLocationAccuracy DDFairHorizontalAccuracy = 65.0;
 static const NSTimeInterval DDFreshLocationAge = 12.0;
+static const NSTimeInterval DDGPSRetryInterval = 10.0;
+static const NSTimeInterval DDGPSNoFixWarningInterval = 20.0;
+static const NSTimeInterval DDGPSPoorSkyWarningInterval = 60.0;
 
 @interface DDMetricView : UIView
 
@@ -40,6 +44,8 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
 @property (nonatomic, strong) CLLocation *lastLocation;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) NSDate *lastLocationUpdateDate;
+@property (nonatomic, strong) NSDate *locationStartDate;
+@property (nonatomic, strong) NSDate *lastLocationRequestDate;
 @property (nonatomic, copy) NSString *locationMessage;
 @property (nonatomic) CLLocationSpeed lastGoodSpeed;
 @property (nonatomic) CLLocationDistance distanceMeters;
@@ -72,10 +78,13 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
 @property (nonatomic, strong) DDMetricView *coordsMetric;
 @property (nonatomic, strong) DDMetricView *altitudeMetric;
 @property (nonatomic, strong) DDMetricView *satelliteMetric;
+@property (nonatomic, strong) DDMetricView *temperatureMetric;
 @property (nonatomic, strong) DDMetricView *accuracyMetric;
 @property (nonatomic, strong) DDMetricView *gPeakMetric;
 @property (nonatomic, strong) DDGMeterView *gMeterView;
 @property (nonatomic, strong) UIButton *hudButton;
+@property (nonatomic, strong) UIButton *flashlightButton;
+@property (nonatomic) BOOL flashlightOn;
 
 @end
 
@@ -119,6 +128,7 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     [self.motionManager stopDeviceMotionUpdates];
     [self.locationManager stopUpdatingLocation];
     [self.locationManager stopUpdatingHeading];
+    [self applyFlashlightEnabled:NO];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
@@ -238,14 +248,20 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     self.gMeterView = [[DDGMeterView alloc] init];
     self.accuracyMetric = [[DDMetricView alloc] initWithTitle:@"GPS"];
     self.satelliteMetric = [[DDMetricView alloc] initWithTitle:@"SAT"];
+    self.temperatureMetric = [[DDMetricView alloc] initWithTitle:@"TEMP"];
     self.gPeakMetric = [[DDMetricView alloc] initWithTitle:@"PEAK G"];
 
-    UIStackView *fixStack = [[UIStackView alloc] initWithArrangedSubviews:@[self.accuracyMetric, self.satelliteMetric]];
+    UIStackView *fixStack = [[UIStackView alloc] initWithArrangedSubviews:@[self.accuracyMetric, self.temperatureMetric]];
     fixStack.axis = UILayoutConstraintAxisHorizontal;
     fixStack.spacing = 6;
     fixStack.distribution = UIStackViewDistributionFillEqually;
 
-    UIStackView *gStack = [[UIStackView alloc] initWithArrangedSubviews:@[self.gMeterView, fixStack, self.gPeakMetric]];
+    UIStackView *auxStack = [[UIStackView alloc] initWithArrangedSubviews:@[self.satelliteMetric, self.gPeakMetric]];
+    auxStack.axis = UILayoutConstraintAxisHorizontal;
+    auxStack.spacing = 6;
+    auxStack.distribution = UIStackViewDistributionFillEqually;
+
+    UIStackView *gStack = [[UIStackView alloc] initWithArrangedSubviews:@[self.gMeterView, fixStack, auxStack]];
     gStack.axis = UILayoutConstraintAxisVertical;
     gStack.spacing = 5;
     gStack.alignment = UIStackViewAlignmentFill;
@@ -253,7 +269,7 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     [gStack.widthAnchor constraintEqualToAnchor:content.widthAnchor multiplier:0.27].active = YES;
     [self.gMeterView.heightAnchor constraintGreaterThanOrEqualToConstant:70].active = YES;
     [fixStack.heightAnchor constraintGreaterThanOrEqualToConstant:52].active = YES;
-    [self.gPeakMetric.heightAnchor constraintGreaterThanOrEqualToConstant:52].active = YES;
+    [auxStack.heightAnchor constraintGreaterThanOrEqualToConstant:52].active = YES;
 
     return self.dashboardPanel;
 }
@@ -282,15 +298,17 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     UIButton *unitsButton = [self buttonWithTitle:@"UNITS"];
     self.hudButton = [self buttonWithTitle:@"HUD"];
     UIButton *calibrateButton = [self buttonWithTitle:@"CAL"];
+    self.flashlightButton = [self buttonWithTitle:@"LIGHT"];
 
     [resetButton addTarget:self action:@selector(resetTrip) forControlEvents:UIControlEventTouchUpInside];
     [unitsButton addTarget:self action:@selector(toggleUnits) forControlEvents:UIControlEventTouchUpInside];
     [self.hudButton addTarget:self action:@selector(toggleHUD) forControlEvents:UIControlEventTouchUpInside];
     [calibrateButton addTarget:self action:@selector(calibrateMotion) forControlEvents:UIControlEventTouchUpInside];
+    [self.flashlightButton addTarget:self action:@selector(toggleFlashlight) forControlEvents:UIControlEventTouchUpInside];
 
-    UIStackView *controls = [[UIStackView alloc] initWithArrangedSubviews:@[resetButton, unitsButton, self.hudButton, calibrateButton]];
+    UIStackView *controls = [[UIStackView alloc] initWithArrangedSubviews:@[resetButton, unitsButton, self.hudButton, calibrateButton, self.flashlightButton]];
     controls.axis = UILayoutConstraintAxisHorizontal;
-    controls.spacing = 8;
+    controls.spacing = 6;
     controls.distribution = UIStackViewDistributionFillEqually;
     [controls.heightAnchor constraintEqualToConstant:40].active = YES;
     return controls;
@@ -303,6 +321,7 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.headingFilter = 1;
     self.locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+    self.locationManager.pausesLocationUpdatesAutomatically = NO;
 
     if (![CLLocationManager locationServicesEnabled]) {
         self.locationMessage = @"LOCATION OFF";
@@ -321,7 +340,7 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
             break;
         case kCLAuthorizationStatusAuthorizedAlways:
         case kCLAuthorizationStatusAuthorizedWhenInUse:
-            [self.locationManager startUpdatingLocation];
+            [self startLocationUpdates];
             if ([CLLocationManager headingAvailable]) {
                 [self.locationManager startUpdatingHeading];
             }
@@ -350,8 +369,15 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
             return;
         }
 
-        strongSelf.latestLateralG = motion.userAcceleration.x - strongSelf.calibrationLateralG;
-        strongSelf.latestForwardG = motion.userAcceleration.y - strongSelf.calibrationForwardG;
+        double forward = motion.userAcceleration.x;
+        double lateral = -motion.userAcceleration.y;
+        if ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight) {
+            forward = -forward;
+            lateral = -lateral;
+        }
+
+        strongSelf.latestForwardG = forward - strongSelf.calibrationForwardG;
+        strongSelf.latestLateralG = lateral - strongSelf.calibrationLateralG;
         [strongSelf updatePeaks];
         [strongSelf.gMeterView updateLateral:strongSelf.latestLateralG forward:strongSelf.latestForwardG];
     }];
@@ -370,6 +396,7 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     if (self.lastLocationUpdateDate && [now timeIntervalSinceDate:self.lastLocationUpdateDate] > DDFreshLocationAge) {
         self.lastGoodSpeed = self.lastGoodSpeed > 0.4 ? self.lastGoodSpeed * 0.5 : 0;
     }
+    [self updateGPSAcquisitionStateAtDate:now];
 
     if (self.lastGoodSpeed > 1.0) {
         self.movingSeconds += delta;
@@ -386,6 +413,8 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     self.lastLocation = nil;
     self.currentLocation = nil;
     self.lastLocationUpdateDate = nil;
+    self.locationStartDate = [NSDate date];
+    self.lastLocationRequestDate = nil;
     self.locationMessage = @"GPS STARTING";
     self.lastGoodSpeed = 0;
     self.distanceMeters = 0;
@@ -397,6 +426,56 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     self.peakLeftG = 0;
     self.peakRightG = 0;
     [self render];
+}
+
+- (void)startLocationUpdates {
+    self.locationStartDate = [NSDate date];
+    self.lastLocationRequestDate = nil;
+    [self.locationManager startUpdatingLocation];
+    [self requestSingleLocationIfNeededAtDate:self.locationStartDate force:YES];
+}
+
+- (void)requestSingleLocationIfNeededAtDate:(NSDate *)now force:(BOOL)force {
+    if (!force && self.lastLocationRequestDate && [now timeIntervalSinceDate:self.lastLocationRequestDate] < DDGPSRetryInterval) {
+        return;
+    }
+    self.lastLocationRequestDate = now;
+    if ([self.locationManager respondsToSelector:@selector(requestLocation)]) {
+        [self.locationManager requestLocation];
+    }
+}
+
+- (void)updateGPSAcquisitionStateAtDate:(NSDate *)now {
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
+        self.locationMessage = @"ALLOW GPS";
+        return;
+    }
+    if (status == kCLAuthorizationStatusNotDetermined) {
+        self.locationMessage = @"ALLOW GPS";
+        return;
+    }
+    if (![CLLocationManager locationServicesEnabled]) {
+        self.locationMessage = @"LOCATION OFF";
+        return;
+    }
+    if (self.currentLocation) {
+        return;
+    }
+
+    if (!self.locationStartDate) {
+        self.locationStartDate = now;
+    }
+
+    [self requestSingleLocationIfNeededAtDate:now force:NO];
+    NSTimeInterval waitingSeconds = [now timeIntervalSinceDate:self.locationStartDate];
+    if (waitingSeconds >= DDGPSPoorSkyWarningInterval) {
+        self.locationMessage = @"NEED SKY";
+    } else if (waitingSeconds >= DDGPSNoFixWarningInterval) {
+        self.locationMessage = @"NO GPS FIX";
+    } else {
+        self.locationMessage = @"GPS STARTING";
+    }
 }
 
 - (void)toggleUnits {
@@ -416,6 +495,43 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     self.latestForwardG = 0;
     self.latestLateralG = 0;
     [self.gMeterView updateLateral:0 forward:0];
+}
+
+- (void)toggleFlashlight {
+    [self applyFlashlightEnabled:!self.flashlightOn];
+}
+
+- (void)applyFlashlightEnabled:(BOOL)on {
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (!device || !device.hasTorch) {
+        _flashlightOn = NO;
+        [self updateFlashlightButtonWithMessage:@"NO LED"];
+        return;
+    }
+
+    NSError *error = nil;
+    if (![device lockForConfiguration:&error]) {
+        _flashlightOn = NO;
+        [self updateFlashlightButtonWithMessage:@"LIGHT"];
+        return;
+    }
+
+    if (on && [device isTorchModeSupported:AVCaptureTorchModeOn]) {
+        device.torchMode = AVCaptureTorchModeOn;
+        _flashlightOn = YES;
+    } else {
+        device.torchMode = AVCaptureTorchModeOff;
+        _flashlightOn = NO;
+    }
+    [device unlockForConfiguration];
+    [self updateFlashlightButtonWithMessage:nil];
+}
+
+- (void)updateFlashlightButtonWithMessage:(NSString *)message {
+    NSString *title = message ?: (self.flashlightOn ? @"LIT" : @"LIGHT");
+    [self.flashlightButton setTitle:title forState:UIControlStateNormal];
+    self.flashlightButton.backgroundColor = self.flashlightOn ? [self colorAccent] : [self colorControl];
+    self.flashlightButton.tintColor = self.flashlightOn ? [UIColor blackColor] : [UIColor whiteColor];
 }
 
 - (void)updatePeaks {
@@ -474,6 +590,8 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
         self.signalLabel.text = message;
         self.statusLabel.text = message;
     }
+
+    [self.temperatureMetric updateValue:@"N/A" subtitle:[self thermalStateSubtitle]];
 
     double totalG = sqrt((self.latestForwardG * self.latestForwardG) + (self.latestLateralG * self.latestLateralG));
     [self.gPeakMetric updateValue:[NSString stringWithFormat:@"%.2f", totalG] subtitle:[self peakGSubtitle]];
@@ -551,6 +669,21 @@ static const NSTimeInterval DDFreshLocationAge = 12.0;
     double brake = fabs(self.peakBrakeG);
     double corner = MAX(fabs(self.peakLeftG), fabs(self.peakRightG));
     return [NSString stringWithFormat:@"A %.2f B %.2f C %.2f", self.peakAccelG, brake, corner];
+}
+
+- (NSString *)thermalStateSubtitle {
+    NSProcessInfoThermalState state = [NSProcessInfo processInfo].thermalState;
+    switch (state) {
+        case NSProcessInfoThermalStateNominal:
+            return @"PHONE OK";
+        case NSProcessInfoThermalStateFair:
+            return @"PHONE WARM";
+        case NSProcessInfoThermalStateSerious:
+            return @"PHONE HOT";
+        case NSProcessInfoThermalStateCritical:
+            return @"COOL DOWN";
+    }
+    return @"NO AMBIENT";
 }
 
 - (NSString *)formatDuration:(NSTimeInterval)interval {
