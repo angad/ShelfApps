@@ -42,6 +42,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>NetworkWall scans nearby Bluetooth Low Energy devices to show local BLE status on the wall display.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>NetworkWall scans nearby Bluetooth Low Energy devices to show local BLE status on the wall display.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchImages</key>

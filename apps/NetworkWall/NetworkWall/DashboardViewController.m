@@ -1,4 +1,5 @@
 #import "DashboardViewController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 #import <arpa/inet.h>
 #import <errno.h>
 #import <fcntl.h>
@@ -19,6 +20,7 @@ typedef NS_ENUM(NSInteger, NWTab) {
 
 static NSString * const NWHistoricalSamplesKey = @"NetworkWall.HistoricalSamples";
 static NSString * const NWKnownDevicesKey = @"NetworkWall.KnownDevices";
+static NSString * const NWKnownBLEDevicesKey = @"NetworkWall.KnownBLEDevices";
 static NSString * const NWRefreshIntervalKey = @"NetworkWall.RefreshInterval";
 static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
 
@@ -55,6 +57,23 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
 @end
 
 @implementation NWScanResult
+@end
+
+@interface NWBLEDevice : NSObject
+
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *vendor;
+@property (nonatomic, copy) NSString *serviceHint;
+@property (nonatomic, strong) NSNumber *rssi;
+@property (nonatomic, strong) NSDate *lastSeen;
+@property (nonatomic) NSInteger confidence;
+@property (nonatomic) BOOL isNew;
+
+@end
+
+@implementation NWBLEDevice
 @end
 
 @interface NWMetricTile : UIView
@@ -1071,15 +1090,21 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
 
 @end
 
-@interface DashboardViewController ()
+@interface DashboardViewController () <CBCentralManagerDelegate>
 
 @property (nonatomic, strong) NWNetworkScanner *scanner;
+@property (nonatomic, strong) CBCentralManager *bleCentral;
 @property (nonatomic, strong) NSTimer *clockTimer;
 @property (nonatomic, strong) NSTimer *scanTimer;
+@property (nonatomic, strong) NSTimer *bleScanStopTimer;
 @property (nonatomic, strong) NWScanResult *lastResult;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NWBLEDevice *> *bleDevicesByID;
 @property (nonatomic, strong) NSArray<NSDictionary *> *historySamples;
 @property (nonatomic, strong) NSMutableArray<NSString *> *events;
 @property (nonatomic) BOOL scanning;
+@property (nonatomic) BOOL bleScanning;
+@property (nonatomic, copy) NSString *bleStatus;
+@property (nonatomic, strong) NSDate *bleLastScanDate;
 @property (nonatomic) NWTab selectedTab;
 @property (nonatomic) NSTimeInterval refreshInterval;
 
@@ -1099,6 +1124,8 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
         _scanner = [[NWNetworkScanner alloc] init];
         _selectedTab = NWTabDashboard;
         _events = [NSMutableArray array];
+        _bleDevicesByID = [NSMutableDictionary dictionary];
+        _bleStatus = @"waiting";
         _refreshInterval = [[NSUserDefaults standardUserDefaults] doubleForKey:NWRefreshIntervalKey];
         if (_refreshInterval < 15.0) {
             _refreshInterval = NWDefaultRefreshInterval;
@@ -1121,6 +1148,7 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     self.view.backgroundColor = [self colorBackground];
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     [self buildInterface];
+    self.bleCentral = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
     [self render];
     [self startTimers];
     [self startScan];
@@ -1130,6 +1158,8 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     [super viewDidDisappear:animated];
     [self.clockTimer invalidate];
     [self.scanTimer invalidate];
+    [self.bleScanStopTimer invalidate];
+    [self.bleCentral stopScan];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
@@ -1200,13 +1230,423 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:self.refreshInterval target:self selector:@selector(startScan) userInfo:nil repeats:YES];
 }
 
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+    if (central.state == CBManagerStatePoweredOn) {
+        self.bleStatus = @"ready";
+        [self startBLEScan];
+    } else if (central.state == CBManagerStatePoweredOff) {
+        self.bleStatus = @"Bluetooth off";
+        self.bleScanning = NO;
+    } else if (central.state == CBManagerStateUnauthorized) {
+        self.bleStatus = @"Bluetooth denied";
+        self.bleScanning = NO;
+    } else if (central.state == CBManagerStateUnsupported) {
+        self.bleStatus = @"BLE unsupported";
+        self.bleScanning = NO;
+    } else {
+        self.bleStatus = @"Bluetooth unavailable";
+        self.bleScanning = NO;
+    }
+    [self render];
+}
+
+- (void)startBLEScan {
+    if (self.bleCentral.state != CBManagerStatePoweredOn || self.bleScanning) {
+        return;
+    }
+    self.bleScanning = YES;
+    self.bleStatus = @"scanning";
+    self.bleLastScanDate = [NSDate date];
+    [self pruneStaleBLEDevices];
+    [self.bleCentral scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
+    [self.bleScanStopTimer invalidate];
+    self.bleScanStopTimer = [NSTimer scheduledTimerWithTimeInterval:18.0 target:self selector:@selector(stopBLEScan) userInfo:nil repeats:NO];
+    [self tick];
+    [self render];
+}
+
+- (void)stopBLEScan {
+    [self.bleCentral stopScan];
+    self.bleScanning = NO;
+    self.bleStatus = self.bleDevicesByID.count > 0 ? @"recent scan" : @"no BLE devices";
+    [self tick];
+    [self render];
+}
+
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
+    if (RSSI.integerValue == 127) {
+        return;
+    }
+
+    NSString *identifier = peripheral.identifier.UUIDString ?: peripheral.name ?: [NSString stringWithFormat:@"ble-%@", @([[NSDate date] timeIntervalSince1970])];
+    NSDictionary *known = [[NSUserDefaults standardUserDefaults] dictionaryForKey:NWKnownBLEDevicesKey] ?: @{};
+    NWBLEDevice *device = self.bleDevicesByID[identifier] ?: [[NWBLEDevice alloc] init];
+    device.identifier = identifier;
+    device.rssi = RSSI;
+    device.lastSeen = [NSDate date];
+    device.serviceHint = [self bleServiceHintFromAdvertisementData:advertisementData];
+    device.vendor = [self bleVendorFromAdvertisementData:advertisementData];
+    device.name = [self bleNameForPeripheral:peripheral advertisementData:advertisementData vendor:device.vendor serviceHint:device.serviceHint];
+    device.type = [self bleTypeForName:device.name vendor:device.vendor serviceHint:device.serviceHint advertisementData:advertisementData];
+    device.confidence = [self bleConfidenceForDevice:device];
+    [self applyKnownBLEStore:known toDevice:device];
+    device.isNew = (known[identifier] == nil);
+    self.bleDevicesByID[identifier] = device;
+
+    NSMutableDictionary *updatedKnown = [known mutableCopy];
+    [self updateKnownBLEStore:updatedKnown withDevice:device firstSeen:device.isNew];
+    [[NSUserDefaults standardUserDefaults] setObject:updatedKnown forKey:NWKnownBLEDevicesKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    [self render];
+}
+
+- (NSString *)bleNameForPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData vendor:(NSString *)vendor serviceHint:(NSString *)serviceHint {
+    NSString *localName = advertisementData[CBAdvertisementDataLocalNameKey];
+    if (localName.length > 0) {
+        return localName;
+    }
+    if (peripheral.name.length > 0) {
+        return peripheral.name;
+    }
+    NSString *appleHint = [self bleAppleManufacturerHintFromAdvertisementData:advertisementData];
+    if ([appleHint isEqualToString:@"iBeacon"] || [appleHint isEqualToString:@"Find My"]) {
+        return appleHint;
+    }
+    if ([serviceHint containsString:@"FEAA(Eddystone)"]) {
+        return @"Eddystone Beacon";
+    }
+    if ([serviceHint containsString:@"FE9F(FastPair)"]) {
+        return @"Fast Pair Device";
+    }
+    if (vendor.length > 0) {
+        return [NSString stringWithFormat:@"%@ BLE", vendor];
+    }
+    return @"BLE Device";
+}
+
+- (NSString *)bleServiceHintFromAdvertisementData:(NSDictionary *)advertisementData {
+    NSMutableArray *parts = [NSMutableArray array];
+    for (NSString *token in [self bleServiceUUIDTokensFromAdvertisementData:advertisementData]) {
+        NSString *label = [self bleServiceLabelForUUIDToken:token];
+        NSString *part = label.length > 0 ? [NSString stringWithFormat:@"%@(%@)", token, label] : token;
+        if (![parts containsObject:part]) {
+            [parts addObject:part];
+        }
+    }
+    NSString *appleHint = [self bleAppleManufacturerHintFromAdvertisementData:advertisementData];
+    if (appleHint.length > 0 && ![parts containsObject:appleHint]) {
+        [parts addObject:appleHint];
+    }
+    if ([advertisementData[CBAdvertisementDataIsConnectable] boolValue]) {
+        [parts addObject:@"connectable"];
+    }
+    return [parts componentsJoinedByString:@" "];
+}
+
+- (NSArray<NSString *> *)bleServiceUUIDTokensFromAdvertisementData:(NSDictionary *)advertisementData {
+    NSMutableArray *tokens = [NSMutableArray array];
+    NSArray *keys = @[CBAdvertisementDataServiceUUIDsKey, CBAdvertisementDataOverflowServiceUUIDsKey, CBAdvertisementDataSolicitedServiceUUIDsKey];
+    for (NSString *key in keys) {
+        NSArray *uuids = advertisementData[key];
+        if (![uuids isKindOfClass:[NSArray class]]) {
+            continue;
+        }
+        for (CBUUID *uuid in uuids) {
+            NSString *token = [self bleUUIDToken:uuid];
+            if (token.length > 0 && ![tokens containsObject:token]) {
+                [tokens addObject:token];
+            }
+        }
+    }
+
+    NSDictionary *serviceData = advertisementData[CBAdvertisementDataServiceDataKey];
+    if ([serviceData isKindOfClass:[NSDictionary class]]) {
+        for (CBUUID *uuid in serviceData.allKeys) {
+            NSString *token = [self bleUUIDToken:uuid];
+            if (token.length > 0 && ![tokens containsObject:token]) {
+                [tokens addObject:token];
+            }
+        }
+    }
+    return tokens;
+}
+
+- (NSString *)bleUUIDToken:(id)uuid {
+    NSString *raw = @"";
+    if ([uuid isKindOfClass:[CBUUID class]]) {
+        raw = [uuid UUIDString];
+    } else if ([uuid isKindOfClass:[NSString class]]) {
+        raw = uuid;
+    }
+    NSString *value = [[raw stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString];
+    if (value.length == 32 && [value hasPrefix:@"0000"] && [value hasSuffix:@"00001000800000805F9B34FB"]) {
+        return [value substringWithRange:NSMakeRange(4, 4)];
+    }
+    return value;
+}
+
+- (NSString *)bleServiceLabelForUUIDToken:(NSString *)token {
+    NSDictionary *labels = @{
+        @"1808": @"Glucose",
+        @"1809": @"Thermo",
+        @"180A": @"Info",
+        @"180D": @"Heart",
+        @"180E": @"Phone",
+        @"180F": @"Battery",
+        @"1810": @"Pressure",
+        @"1811": @"Alert",
+        @"1812": @"HID",
+        @"1814": @"Run",
+        @"1815": @"Automation",
+        @"1816": @"Cycling",
+        @"1818": @"Power",
+        @"1819": @"Location",
+        @"181A": @"Environment",
+        @"181B": @"Body",
+        @"181D": @"Scale",
+        @"181F": @"Glucose",
+        @"1821": @"Indoor",
+        @"1822": @"Oximeter",
+        @"1826": @"Fitness",
+        @"1827": @"Mesh",
+        @"1828": @"Position",
+        @"183B": @"Sensor",
+        @"1843": @"AudioIn",
+        @"1844": @"Volume",
+        @"1845": @"Volume",
+        @"1846": @"AudioSet",
+        @"184E": @"Audio",
+        @"1853": @"Audio",
+        @"1854": @"Audio",
+        @"FD44": @"Tile",
+        @"FD6F": @"Exposure",
+        @"FE9F": @"FastPair",
+        @"FEAA": @"Eddystone"
+    };
+    return labels[token] ?: @"";
+}
+
+- (NSNumber *)bleManufacturerCompanyIDFromAdvertisementData:(NSDictionary *)advertisementData {
+    NSData *data = advertisementData[CBAdvertisementDataManufacturerDataKey];
+    if (data.length < 2) {
+        return nil;
+    }
+    const uint8_t *bytes = data.bytes;
+    uint16_t company = (uint16_t)bytes[0] | ((uint16_t)bytes[1] << 8);
+    return @(company);
+}
+
+- (NSString *)bleAppleManufacturerHintFromAdvertisementData:(NSDictionary *)advertisementData {
+    NSNumber *company = [self bleManufacturerCompanyIDFromAdvertisementData:advertisementData];
+    NSData *data = advertisementData[CBAdvertisementDataManufacturerDataKey];
+    if (company.unsignedIntegerValue != 0x004C || data.length < 3) {
+        return @"";
+    }
+    const uint8_t *bytes = data.bytes;
+    switch (bytes[2]) {
+        case 0x02: return @"iBeacon";
+        case 0x07: return @"Apple Audio";
+        case 0x10: return @"Apple Nearby";
+        case 0x12: return @"Find My";
+        case 0x19: return @"Apple Nearby";
+        default: return [NSString stringWithFormat:@"Apple 0x%02X", bytes[2]];
+    }
+}
+
+- (NSString *)bleVendorFromAdvertisementData:(NSDictionary *)advertisementData {
+    NSNumber *company = [self bleManufacturerCompanyIDFromAdvertisementData:advertisementData];
+    if (!company) {
+        return @"";
+    }
+    NSDictionary *vendors = @{
+        @(0x004C): @"Apple",
+        @(0x0006): @"Microsoft",
+        @(0x000F): @"Broadcom",
+        @(0x0059): @"Nordic",
+        @(0x0055): @"Plantronics",
+        @(0x0057): @"Harman",
+        @(0x005C): @"Belkin",
+        @(0x006B): @"Polar",
+        @(0x0075): @"Samsung",
+        @(0x0087): @"Garmin",
+        @(0x009E): @"Bose",
+        @(0x00C4): @"LG",
+        @(0x00D1): @"Polar",
+        @(0x00E0): @"Google",
+        @(0x012D): @"Sony",
+        @(0x0157): @"Amazfit",
+        @(0x0171): @"Amazon",
+        @(0x018E): @"Google",
+        @(0x01A9): @"Canon",
+        @(0x01AB): @"Meta",
+        @(0x01B5): @"Nest",
+        @(0x01DA): @"Logitech",
+        @(0x01DD): @"Philips",
+        @(0x01FC): @"Wahoo",
+        @(0x02B2): @"Oura",
+        @(0x02C5): @"Lenovo",
+        @(0x02E5): @"Espressif",
+        @(0x02F2): @"GoPro",
+        @(0x0304): @"Oura",
+        @(0x038F): @"Xiaomi",
+        @(0x0399): @"Nikon",
+        @(0x041E): @"Dell",
+        @(0x0494): @"Sennheiser",
+        @(0x04AD): @"Shure",
+        @(0x058E): @"Meta",
+        @(0x05A7): @"Sonos",
+        @(0x067C): @"Tile",
+        @(0x07A2): @"Roku",
+        @(0x0CC2): @"Anker"
+    };
+    return vendors[company] ?: [NSString stringWithFormat:@"Company 0x%04lX", (unsigned long)company.unsignedIntegerValue];
+}
+
+- (NSString *)bleTypeForName:(NSString *)name vendor:(NSString *)vendor serviceHint:(NSString *)serviceHint advertisementData:(NSDictionary *)advertisementData {
+    NSString *text = [[NSString stringWithFormat:@"%@ %@ %@", name ?: @"", vendor ?: @"", serviceHint ?: @""] lowercaseString];
+    NSSet *services = [NSSet setWithArray:[self bleServiceUUIDTokensFromAdvertisementData:advertisementData]];
+    NSNumber *company = [self bleManufacturerCompanyIDFromAdvertisementData:advertisementData];
+    NSString *appleHint = [self bleAppleManufacturerHintFromAdvertisementData:advertisementData];
+
+    if ([services containsObject:@"1812"] || [self text:text containsAny:@[@"keyboard", @"mouse", @"trackpad", @"pencil", @"controller", @"gamepad", @"remote"]]) {
+        return @"Input";
+    }
+    if ([services containsObject:@"FEAA"] || [services containsObject:@"FD44"] || [services containsObject:@"FD6F"] || [appleHint isEqualToString:@"iBeacon"] || [appleHint isEqualToString:@"Find My"] || [self text:text containsAny:@[@"ibeacon", @"eddystone", @"airtag", @"tile", @"beacon"]]) {
+        return @"Beacon";
+    }
+    if ([self bleServices:services containsAny:@[@"1843", @"1844", @"1845", @"1846", @"184E", @"1853", @"1854", @"FE9F"]] || [self text:text containsAny:@[@"airpods", @"beats", @"bose", @"speaker", @"headphone", @"headset", @"earbud", @"earbuds", @"buds", @"sound", @"audio", @"jbl", @"sennheiser", @"shure", @"sonos", @"anker", @"soundcore", @"wh-", @"wf-"]]) {
+        return @"Audio";
+    }
+    if ([self bleServices:services containsAny:@[@"1808", @"180D", @"1810", @"1814", @"1816", @"1818", @"1819", @"181B", @"181D", @"181F", @"1822", @"1826"]] || [self text:text containsAny:@[@"fitness", @"heart", @"hrm", @"garmin", @"fitbit", @"whoop", @"wahoo", @"polar", @"oura", @"amazfit", @"mi band", @"scale", @"cycling", @"cadence"]]) {
+        return @"Fitness";
+    }
+    if ([self text:text containsAny:@[@"watch", @"wearable", @"band", @"bracelet", @"ring"]]) {
+        return @"Wearable";
+    }
+    if ([self bleServices:services containsAny:@[@"1809", @"1815", @"181A", @"1821", @"1827", @"1828", @"183B"]] || [self text:text containsAny:@[@"home", @"hue", @"sensor", @"lock", @"thermo", @"thermostat", @"switch", @"bulb", @"light", @"meter", @"plug", @"esp", @"tuya", @"nest", @"belkin", @"wemo", @"philips"]]) {
+        return @"Smart";
+    }
+
+    if ([vendor isEqualToString:@"Apple"]) {
+        if ([appleHint isEqualToString:@"Apple Audio"]) return @"Audio";
+        return @"Wearable";
+    }
+    if ([self text:[vendor lowercaseString] containsAny:@[@"bose", @"sony", @"harman", @"plantronics", @"sennheiser", @"shure", @"sonos", @"anker"]]) {
+        return @"Audio";
+    }
+    if ([self text:[vendor lowercaseString] containsAny:@[@"garmin", @"polar", @"wahoo", @"oura", @"amazfit"]]) {
+        return @"Fitness";
+    }
+    if ([self text:[vendor lowercaseString] containsAny:@[@"tile"]]) {
+        return @"Beacon";
+    }
+    if ([self text:[vendor lowercaseString] containsAny:@[@"philips", @"belkin", @"nest", @"roku", @"amazon", @"xiaomi", @"espressif"]]) {
+        return @"Smart";
+    }
+    if (company.unsignedIntegerValue == 0x0059 && serviceHint.length > 0) {
+        return @"Smart";
+    }
+    return @"Unknown";
+}
+
+- (BOOL)bleServices:(NSSet *)services containsAny:(NSArray<NSString *> *)candidates {
+    for (NSString *candidate in candidates) {
+        if ([services containsObject:candidate]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)text:(NSString *)text containsAny:(NSArray<NSString *> *)needles {
+    for (NSString *needle in needles) {
+        if ([text containsString:needle]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSInteger)bleConfidenceForDevice:(NWBLEDevice *)device {
+    NSInteger confidence = 15;
+    if (device.name.length > 0 && ![device.name isEqualToString:@"BLE Device"]) confidence = MAX(confidence, 45);
+    if (device.vendor.length > 0) confidence = MAX(confidence, 55);
+    if (device.serviceHint.length > 0) confidence = MAX(confidence, 65);
+    if (![device.type isEqualToString:@"Unknown"]) confidence = MAX(confidence, 72);
+    if (![device.type isEqualToString:@"Unknown"] && device.vendor.length > 0) confidence = MAX(confidence, 82);
+    return confidence;
+}
+
+- (void)applyKnownBLEStore:(NSDictionary *)store toDevice:(NWBLEDevice *)device {
+    NSDictionary *entry = store[device.identifier];
+    if (![entry isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+    NSString *bestName = [self dashboardStringValue:entry[@"name"]];
+    NSString *bestType = [self dashboardStringValue:entry[@"type"]];
+    NSString *bestVendor = [self dashboardStringValue:entry[@"vendor"]];
+    NSInteger savedConfidence = [entry[@"confidence"] integerValue];
+    if ((device.name.length == 0 || [device.name isEqualToString:@"BLE Device"]) && bestName.length > 0) {
+        device.name = bestName;
+    }
+    if ((device.type.length == 0 || [device.type isEqualToString:@"Unknown"] || device.confidence < 45) && bestType.length > 0 && savedConfidence >= 45) {
+        device.type = bestType;
+        device.confidence = MAX(device.confidence, savedConfidence - 5);
+    }
+    if (device.vendor.length == 0 && bestVendor.length > 0) {
+        device.vendor = bestVendor;
+    }
+}
+
+- (NSString *)dashboardStringValue:(id)value {
+    if ([value isKindOfClass:[NSString class]]) {
+        return value;
+    }
+    if ([value respondsToSelector:@selector(stringValue)]) {
+        return [value stringValue];
+    }
+    return @"";
+}
+
+- (void)updateKnownBLEStore:(NSMutableDictionary *)store withDevice:(NWBLEDevice *)device firstSeen:(BOOL)firstSeen {
+    NSMutableDictionary *entry = [store[device.identifier] mutableCopy] ?: [NSMutableDictionary dictionary];
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    if (entry[@"firstSeen"] == nil || firstSeen) {
+        entry[@"firstSeen"] = @(now);
+    }
+    entry[@"lastSeen"] = @(now);
+    if (device.name.length > 0) entry[@"name"] = device.name;
+    if (device.type.length > 0) entry[@"type"] = device.type;
+    if (device.vendor.length > 0) entry[@"vendor"] = device.vendor;
+    if (device.serviceHint.length > 0) entry[@"serviceHint"] = device.serviceHint;
+    if (device.rssi) entry[@"rssi"] = device.rssi;
+    entry[@"confidence"] = @(MAX(device.confidence, [entry[@"confidence"] integerValue]));
+    store[device.identifier] = entry;
+}
+
+- (void)pruneStaleBLEDevices {
+    NSDate *cutoff = [NSDate dateWithTimeIntervalSinceNow:-180.0];
+    for (NSString *identifier in [self.bleDevicesByID.allKeys copy]) {
+        NWBLEDevice *device = self.bleDevicesByID[identifier];
+        if (device.lastSeen && [device.lastSeen compare:cutoff] == NSOrderedAscending) {
+            [self.bleDevicesByID removeObjectForKey:identifier];
+        }
+    }
+}
+
+
 - (void)tick {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"h:mm";
     self.timeLabel.text = [formatter stringFromDate:[NSDate date]];
 
-    if (self.scanning) {
-        self.freshnessLabel.text = @"scanning...";
+    if (self.scanning || self.bleScanning) {
+        if (self.scanning && self.bleScanning) {
+            self.freshnessLabel.text = @"scanning Wi-Fi + BLE";
+        } else {
+            self.freshnessLabel.text = self.scanning ? @"scanning Wi-Fi" : @"scanning BLE";
+        }
     } else if (self.lastResult.scanDate) {
         NSInteger seconds = (NSInteger)round([[NSDate date] timeIntervalSinceDate:self.lastResult.scanDate]);
         self.freshnessLabel.text = [NSString stringWithFormat:@"scanned %lds ago", (long)seconds];
@@ -1224,6 +1664,7 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     if (self.scanning) {
         return;
     }
+    [self startBLEScan];
     self.scanning = YES;
     [self tick];
 
@@ -1302,23 +1743,290 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
 - (UIView *)dashboardView {
     UIStackView *root = [[UIStackView alloc] init];
     root.axis = UILayoutConstraintAxisVertical;
-    root.spacing = 7.0;
+    root.spacing = 8.0;
+
+    UIStackView *panes = [[UIStackView alloc] init];
+    panes.axis = UILayoutConstraintAxisHorizontal;
+    panes.spacing = 8.0;
+    panes.distribution = UIStackViewDistributionFillEqually;
+    [root addArrangedSubview:panes];
+
+    [panes addArrangedSubview:[self wifiDashboardPane]];
+    [panes addArrangedSubview:[self bleDashboardPane]];
+
+    [root addArrangedSubview:[self eventStripView]];
+    return root;
+}
+
+- (UIView *)wifiDashboardPane {
+    UIView *panel = [self panelView];
+    UIStackView *stack = [[UIStackView alloc] init];
+    stack.translatesAutoresizingMaskIntoConstraints = NO;
+    stack.axis = UILayoutConstraintAxisVertical;
+    stack.spacing = 7.0;
+    stack.layoutMargins = UIEdgeInsetsMake(10, 11, 10, 11);
+    stack.layoutMarginsRelativeArrangement = YES;
+    [panel addSubview:stack];
+
+    [stack addArrangedSubview:[self paneHeaderWithTitle:@"Wi-Fi" detail:self.lastResult.subnet ?: @"local"]];
 
     UIStackView *top = [[UIStackView alloc] init];
     top.axis = UILayoutConstraintAxisHorizontal;
     top.spacing = 8.0;
-    top.distribution = UIStackViewDistributionFill;
-    [root addArrangedSubview:top];
-    [top.heightAnchor constraintEqualToAnchor:root.heightAnchor multiplier:0.50].active = YES;
+    top.alignment = UIStackViewAlignmentFill;
 
-    [top addArrangedSubview:[self countPanel]];
-    UIView *health = [self healthGrid];
-    [top addArrangedSubview:health];
-    [health.widthAnchor constraintEqualToAnchor:top.widthAnchor multiplier:0.43].active = YES;
+    UIView *count = [self compactCountBlockWithValue:[NSString stringWithFormat:@"%ld", (long)self.lastResult.devices.count]
+                                                title:@"Online"
+                                               detail:[self wifiDetailText]
+                                                color:[UIColor whiteColor]];
+    [top addArrangedSubview:count];
+    [top addArrangedSubview:[self compactHealthGrid]];
+    [count.widthAnchor constraintEqualToAnchor:top.widthAnchor multiplier:0.42].active = YES;
+    [stack addArrangedSubview:top];
 
-    [root addArrangedSubview:[self typeSummaryView]];
-    [root addArrangedSubview:[self eventStripView]];
-    return root;
+    [stack addArrangedSubview:[self compactTypeSummaryViewWithTypes:@[@"Phones", @"Computers", @"Smart Home", @"Media", @"Network", @"Unknown"] ble:NO]];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [stack.leadingAnchor constraintEqualToAnchor:panel.leadingAnchor],
+        [stack.trailingAnchor constraintEqualToAnchor:panel.trailingAnchor],
+        [stack.topAnchor constraintEqualToAnchor:panel.topAnchor],
+        [stack.bottomAnchor constraintEqualToAnchor:panel.bottomAnchor]
+    ]];
+    return panel;
+}
+
+- (UIView *)bleDashboardPane {
+    UIView *panel = [self panelView];
+    UIStackView *stack = [[UIStackView alloc] init];
+    stack.translatesAutoresizingMaskIntoConstraints = NO;
+    stack.axis = UILayoutConstraintAxisVertical;
+    stack.spacing = 7.0;
+    stack.layoutMargins = UIEdgeInsetsMake(10, 11, 10, 11);
+    stack.layoutMarginsRelativeArrangement = YES;
+    [panel addSubview:stack];
+
+    [stack addArrangedSubview:[self paneHeaderWithTitle:@"BLE" detail:self.bleStatus ?: @"waiting"]];
+
+    UIStackView *top = [[UIStackView alloc] init];
+    top.axis = UILayoutConstraintAxisHorizontal;
+    top.spacing = 8.0;
+    top.alignment = UIStackViewAlignmentFill;
+
+    UIView *count = [self compactCountBlockWithValue:[NSString stringWithFormat:@"%ld", (long)self.bleDevicesByID.count]
+                                                title:@"Nearby"
+                                               detail:[self bleDetailText]
+                                                color:[self colorAccent]];
+    [top addArrangedSubview:count];
+    [top addArrangedSubview:[self bleMetricGrid]];
+    [count.widthAnchor constraintEqualToAnchor:top.widthAnchor multiplier:0.42].active = YES;
+    [stack addArrangedSubview:top];
+
+    [stack addArrangedSubview:[self compactTypeSummaryViewWithTypes:@[@"Audio", @"Wearable", @"Fitness", @"Input", @"Beacon", @"Unknown"] ble:YES]];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [stack.leadingAnchor constraintEqualToAnchor:panel.leadingAnchor],
+        [stack.trailingAnchor constraintEqualToAnchor:panel.trailingAnchor],
+        [stack.topAnchor constraintEqualToAnchor:panel.topAnchor],
+        [stack.bottomAnchor constraintEqualToAnchor:panel.bottomAnchor]
+    ]];
+    return panel;
+}
+
+- (UIView *)paneHeaderWithTitle:(NSString *)title detail:(NSString *)detail {
+    UIStackView *row = [[UIStackView alloc] init];
+    row.axis = UILayoutConstraintAxisHorizontal;
+    row.alignment = UIStackViewAlignmentCenter;
+    row.distribution = UIStackViewDistributionEqualSpacing;
+    [row.heightAnchor constraintEqualToConstant:20.0].active = YES;
+
+    UILabel *titleLabel = [self labelWithSize:15 weight:UIFontWeightBlack color:[self colorAccent]];
+    titleLabel.text = [title uppercaseString];
+
+    UILabel *detailLabel = [self labelWithSize:10 weight:UIFontWeightBold color:[self colorMuted]];
+    detailLabel.text = detail ?: @"";
+    detailLabel.textAlignment = NSTextAlignmentRight;
+    detailLabel.minimumScaleFactor = 0.58;
+    detailLabel.adjustsFontSizeToFitWidth = YES;
+
+    [row addArrangedSubview:titleLabel];
+    [row addArrangedSubview:detailLabel];
+    return row;
+}
+
+- (UIView *)compactCountBlockWithValue:(NSString *)value title:(NSString *)title detail:(NSString *)detail color:(UIColor *)color {
+    UIStackView *stack = [[UIStackView alloc] init];
+    stack.axis = UILayoutConstraintAxisVertical;
+    stack.alignment = UIStackViewAlignmentLeading;
+    stack.spacing = 0.0;
+
+    UILabel *valueLabel = [self labelWithSize:60 weight:UIFontWeightBlack color:color];
+    valueLabel.text = value;
+    valueLabel.minimumScaleFactor = 0.42;
+    valueLabel.adjustsFontSizeToFitWidth = YES;
+
+    UILabel *titleLabel = [self labelWithSize:15 weight:UIFontWeightBlack color:[UIColor colorWithWhite:0.84 alpha:1.0]];
+    titleLabel.text = title;
+
+    UILabel *detailLabel = [self labelWithSize:11 weight:UIFontWeightBold color:[self colorMuted]];
+    detailLabel.text = detail ?: @"";
+    detailLabel.minimumScaleFactor = 0.55;
+    detailLabel.adjustsFontSizeToFitWidth = YES;
+
+    [stack addArrangedSubview:valueLabel];
+    [stack addArrangedSubview:titleLabel];
+    [stack addArrangedSubview:detailLabel];
+    return stack;
+}
+
+- (NSString *)wifiDetailText {
+    NSInteger unknown = [self countForType:@"Unknown" devices:self.lastResult.devices];
+    NSInteger classified = self.lastResult.devices.count - unknown;
+    return [NSString stringWithFormat:@"%@ classified / %@ unknown", @(classified), @(unknown)];
+}
+
+- (NSString *)bleDetailText {
+    NSInteger unknown = [self countForBLEType:@"Unknown"];
+    NSInteger classified = self.bleDevicesByID.count - unknown;
+    return [NSString stringWithFormat:@"%@ classified / %@ unknown", @(classified), @(unknown)];
+}
+
+- (UIView *)compactHealthGrid {
+    UIStackView *grid = [[UIStackView alloc] init];
+    grid.axis = UILayoutConstraintAxisVertical;
+    grid.spacing = 5.0;
+    grid.distribution = UIStackViewDistributionFillEqually;
+
+    UIStackView *row1 = [[UIStackView alloc] init];
+    row1.axis = UILayoutConstraintAxisHorizontal;
+    row1.spacing = 5.0;
+    row1.distribution = UIStackViewDistributionFillEqually;
+
+    UIStackView *row2 = [[UIStackView alloc] init];
+    row2.axis = UILayoutConstraintAxisHorizontal;
+    row2.spacing = 5.0;
+    row2.distribution = UIStackViewDistributionFillEqually;
+
+    [row1 addArrangedSubview:[self compactMetricTile:@"GW" value:self.lastResult.gatewayOK ? @"OK" : @"--" color:[self statusColor:self.lastResult.gatewayOK]]];
+    [row1 addArrangedSubview:[self compactMetricTile:@"DNS" value:self.lastResult.dnsOK ? @"OK" : @"--" color:[self statusColor:self.lastResult.dnsOK]]];
+    [row2 addArrangedSubview:[self compactMetricTile:@"NET" value:self.lastResult.internetOK ? @"OK" : @"--" color:[self statusColor:self.lastResult.internetOK]]];
+    NSString *latency = self.lastResult.gatewayLatencyMs >= 0 ? [NSString stringWithFormat:@"%@ms", @(self.lastResult.gatewayLatencyMs)] : (self.lastResult.gatewayOK ? @"LAN" : @"--");
+    [row2 addArrangedSubview:[self compactMetricTile:@"LAT" value:latency color:self.lastResult.gatewayOK ? [self colorAccent] : [self colorMuted]]];
+
+    [grid addArrangedSubview:row1];
+    [grid addArrangedSubview:row2];
+    return grid;
+}
+
+- (UIView *)bleMetricGrid {
+    UIStackView *grid = [[UIStackView alloc] init];
+    grid.axis = UILayoutConstraintAxisVertical;
+    grid.spacing = 5.0;
+    grid.distribution = UIStackViewDistributionFillEqually;
+
+    UIStackView *row1 = [[UIStackView alloc] init];
+    row1.axis = UILayoutConstraintAxisHorizontal;
+    row1.spacing = 5.0;
+    row1.distribution = UIStackViewDistributionFillEqually;
+
+    UIStackView *row2 = [[UIStackView alloc] init];
+    row2.axis = UILayoutConstraintAxisHorizontal;
+    row2.spacing = 5.0;
+    row2.distribution = UIStackViewDistributionFillEqually;
+
+    [row1 addArrangedSubview:[self compactMetricTile:@"SCAN" value:self.bleScanning ? @"ON" : @"IDLE" color:self.bleScanning ? [self colorGood] : [self colorMuted]]];
+    [row1 addArrangedSubview:[self compactMetricTile:@"RSSI" value:[self strongestBLERSSIText] color:[self colorAccent]]];
+    [row2 addArrangedSubview:[self compactMetricTile:@"NEW" value:[NSString stringWithFormat:@"%ld", (long)[self newBLECount]] color:[self newBLECount] > 0 ? [self colorWarn] : [self colorMuted]]];
+    [row2 addArrangedSubview:[self compactMetricTile:@"UNK" value:[NSString stringWithFormat:@"%ld", (long)[self countForBLEType:@"Unknown"]] color:[self countForBLEType:@"Unknown"] > 0 ? [self colorWarn] : [self colorMuted]]];
+
+    [grid addArrangedSubview:row1];
+    [grid addArrangedSubview:row2];
+    return grid;
+}
+
+- (UIView *)compactMetricTile:(NSString *)title value:(NSString *)value color:(UIColor *)color {
+    UIView *tile = [[UIView alloc] init];
+    tile.backgroundColor = [UIColor colorWithRed:0.112 green:0.124 blue:0.134 alpha:1.0];
+    tile.layer.cornerRadius = 6.0;
+    tile.clipsToBounds = YES;
+
+    UIStackView *stack = [[UIStackView alloc] init];
+    stack.translatesAutoresizingMaskIntoConstraints = NO;
+    stack.axis = UILayoutConstraintAxisVertical;
+    stack.alignment = UIStackViewAlignmentLeading;
+    stack.spacing = 0.0;
+    stack.layoutMargins = UIEdgeInsetsMake(5, 7, 5, 7);
+    stack.layoutMarginsRelativeArrangement = YES;
+    [tile addSubview:stack];
+
+    UILabel *titleLabel = [self labelWithSize:8 weight:UIFontWeightBlack color:[self colorMuted]];
+    titleLabel.text = title;
+    UILabel *valueLabel = [self labelWithSize:17 weight:UIFontWeightBlack color:color];
+    valueLabel.text = value;
+    valueLabel.adjustsFontSizeToFitWidth = YES;
+    valueLabel.minimumScaleFactor = 0.55;
+
+    [stack addArrangedSubview:titleLabel];
+    [stack addArrangedSubview:valueLabel];
+    [NSLayoutConstraint activateConstraints:@[
+        [stack.leadingAnchor constraintEqualToAnchor:tile.leadingAnchor],
+        [stack.trailingAnchor constraintEqualToAnchor:tile.trailingAnchor],
+        [stack.topAnchor constraintEqualToAnchor:tile.topAnchor],
+        [stack.bottomAnchor constraintEqualToAnchor:tile.bottomAnchor]
+    ]];
+    return tile;
+}
+
+- (UIView *)compactTypeSummaryViewWithTypes:(NSArray<NSString *> *)types ble:(BOOL)ble {
+    UIStackView *stack = [[UIStackView alloc] init];
+    stack.axis = UILayoutConstraintAxisHorizontal;
+    stack.distribution = UIStackViewDistributionFillEqually;
+    stack.spacing = 4.0;
+    [stack.heightAnchor constraintEqualToConstant:58.0].active = YES;
+    for (NSString *type in types) {
+        NSInteger count = ble ? [self countForBLEType:type] : [self countForType:type devices:self.lastResult.devices];
+        [stack addArrangedSubview:[self compactTypeTile:type count:count ble:ble]];
+    }
+    return stack;
+}
+
+- (UIView *)compactTypeTile:(NSString *)type count:(NSInteger)count ble:(BOOL)ble {
+    UIView *tile = [[UIView alloc] init];
+    tile.backgroundColor = [UIColor colorWithRed:0.112 green:0.124 blue:0.134 alpha:1.0];
+    tile.layer.cornerRadius = 6.0;
+    tile.clipsToBounds = YES;
+
+    UIStackView *stack = [[UIStackView alloc] init];
+    stack.translatesAutoresizingMaskIntoConstraints = NO;
+    stack.axis = UILayoutConstraintAxisVertical;
+    stack.alignment = UIStackViewAlignmentLeading;
+    stack.spacing = 1.0;
+    stack.layoutMargins = UIEdgeInsetsMake(5, 6, 5, 6);
+    stack.layoutMarginsRelativeArrangement = YES;
+    [tile addSubview:stack];
+
+    UILabel *label = [self labelWithSize:8 weight:UIFontWeightBlack color:[self colorMuted]];
+    label.text = [type uppercaseString];
+    label.minimumScaleFactor = 0.45;
+    label.adjustsFontSizeToFitWidth = YES;
+
+    UIColor *countColor = count == 0 ? [UIColor colorWithWhite:0.34 alpha:1.0] : [UIColor whiteColor];
+    if ([type isEqualToString:@"Unknown"] && count > 0) {
+        countColor = [self colorWarn];
+    } else if (ble && count > 0) {
+        countColor = [self colorAccent];
+    }
+    UILabel *value = [self labelWithSize:20 weight:UIFontWeightBlack color:countColor];
+    value.text = [NSString stringWithFormat:@"%ld", (long)count];
+
+    [stack addArrangedSubview:label];
+    [stack addArrangedSubview:value];
+    [NSLayoutConstraint activateConstraints:@[
+        [stack.leadingAnchor constraintEqualToAnchor:tile.leadingAnchor],
+        [stack.trailingAnchor constraintEqualToAnchor:tile.trailingAnchor],
+        [stack.topAnchor constraintEqualToAnchor:tile.topAnchor],
+        [stack.bottomAnchor constraintEqualToAnchor:tile.bottomAnchor]
+    ]];
+    return tile;
 }
 
 - (UIView *)countPanel {
@@ -1501,11 +2209,12 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     summary.distribution = UIStackViewDistributionEqualSpacing;
 
     UILabel *title = [self labelWithSize:17 weight:UIFontWeightBlack color:[UIColor whiteColor]];
-    title.text = [NSString stringWithFormat:@"%ld Devices", (long)self.lastResult.devices.count];
+    title.text = [NSString stringWithFormat:@"%ld Wi-Fi  /  %ld BLE", (long)self.lastResult.devices.count, (long)self.bleDevicesByID.count];
 
     NSInteger unknown = [self countForType:@"Unknown" devices:self.lastResult.devices];
     UILabel *detail = [self labelWithSize:13 weight:UIFontWeightBold color:unknown > 0 ? [self colorWarn] : [self colorGood]];
-    detail.text = self.scanning ? @"scanning..." : [NSString stringWithFormat:@"%@ unknown", @(unknown)];
+    NSInteger bleUnknown = [self countForBLEType:@"Unknown"];
+    detail.text = (self.scanning || self.bleScanning) ? @"scanning..." : [NSString stringWithFormat:@"%@ unknown", @(unknown + bleUnknown)];
     detail.textAlignment = NSTextAlignmentRight;
 
     [summary addArrangedSubview:title];
@@ -1526,7 +2235,8 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     [scroll addSubview:rows];
 
     NSArray<NWDevice *> *devices = [self sortedDevicesForList];
-    if (devices.count == 0) {
+    NSArray<NWBLEDevice *> *bleDevices = [self sortedBLEDevicesForList];
+    if (devices.count == 0 && bleDevices.count == 0) {
         UILabel *empty = [self labelWithSize:18 weight:UIFontWeightBold color:[self colorMuted]];
         empty.text = self.scanning ? @"Scanning local network..." : @"No devices found yet";
         empty.textAlignment = NSTextAlignmentCenter;
@@ -1535,6 +2245,9 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     } else {
         for (NWDevice *device in devices) {
             [rows addArrangedSubview:[self deviceRowView:device]];
+        }
+        for (NWBLEDevice *device in bleDevices) {
+            [rows addArrangedSubview:[self bleDeviceRowView:device]];
         }
     }
 
@@ -1563,6 +2276,23 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
             return [@(aPriority) compare:@(bPriority)];
         }
         return [@([self lastOctetForIP:a.ip]) compare:@([self lastOctetForIP:b.ip])];
+    }];
+}
+
+- (NSArray<NWBLEDevice *> *)sortedBLEDevicesForList {
+    NSArray *priority = @[@"Unknown", @"Audio", @"Wearable", @"Fitness", @"Input", @"Beacon", @"Smart"];
+    return [self.bleDevicesByID.allValues sortedArrayUsingComparator:^NSComparisonResult(NWBLEDevice *a, NWBLEDevice *b) {
+        NSInteger aPriority = [priority containsObject:a.type] ? [priority indexOfObject:a.type] : 99;
+        NSInteger bPriority = [priority containsObject:b.type] ? [priority indexOfObject:b.type] : 99;
+        if (aPriority != bPriority) {
+            return [@(aPriority) compare:@(bPriority)];
+        }
+        NSInteger rssiA = a.rssi.integerValue;
+        NSInteger rssiB = b.rssi.integerValue;
+        if (rssiA != rssiB) {
+            return [@(rssiB) compare:@(rssiA)];
+        }
+        return [a.name compare:b.name];
     }];
 }
 
@@ -1639,6 +2369,78 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     return row;
 }
 
+- (UIView *)bleDeviceRowView:(NWBLEDevice *)device {
+    UIView *row = [[UIView alloc] init];
+    row.backgroundColor = [UIColor colorWithRed:0.112 green:0.124 blue:0.134 alpha:1.0];
+    row.layer.cornerRadius = 7.0;
+    row.clipsToBounds = YES;
+    [row.heightAnchor constraintEqualToConstant:48.0].active = YES;
+
+    UIView *stripe = [[UIView alloc] init];
+    stripe.translatesAutoresizingMaskIntoConstraints = NO;
+    stripe.backgroundColor = [self colorForBLEType:device.type];
+    [row addSubview:stripe];
+
+    UIStackView *content = [[UIStackView alloc] init];
+    content.translatesAutoresizingMaskIntoConstraints = NO;
+    content.axis = UILayoutConstraintAxisHorizontal;
+    content.alignment = UIStackViewAlignmentCenter;
+    content.spacing = 10.0;
+    [row addSubview:content];
+
+    UIStackView *nameStack = [[UIStackView alloc] init];
+    nameStack.axis = UILayoutConstraintAxisVertical;
+    nameStack.spacing = 1.0;
+
+    UILabel *name = [self labelWithSize:15 weight:UIFontWeightBlack color:[UIColor colorWithWhite:0.92 alpha:1.0]];
+    name.text = device.name.length ? device.name : @"BLE Device";
+    name.minimumScaleFactor = 0.68;
+    name.adjustsFontSizeToFitWidth = YES;
+
+    UILabel *meta = [self labelWithSize:10 weight:UIFontWeightBold color:[UIColor colorWithWhite:0.54 alpha:1.0]];
+    meta.text = [NSString stringWithFormat:@"BLE  %@  %@", device.type ?: @"Unknown", device.vendor ?: @""];
+    meta.minimumScaleFactor = 0.7;
+    meta.adjustsFontSizeToFitWidth = YES;
+
+    [nameStack addArrangedSubview:name];
+    [nameStack addArrangedSubview:meta];
+    [content addArrangedSubview:nameStack];
+
+    UIStackView *detailStack = [[UIStackView alloc] init];
+    detailStack.axis = UILayoutConstraintAxisVertical;
+    detailStack.alignment = UIStackViewAlignmentTrailing;
+    detailStack.spacing = 1.0;
+    [detailStack.widthAnchor constraintEqualToConstant:170.0].active = YES;
+
+    UILabel *rssi = [self labelWithSize:14 weight:UIFontWeightBlack color:[UIColor whiteColor]];
+    rssi.text = device.rssi ? [NSString stringWithFormat:@"%@ dBm", device.rssi] : @"-- dBm";
+    rssi.textAlignment = NSTextAlignmentRight;
+
+    UILabel *hint = [self labelWithSize:10 weight:UIFontWeightSemibold color:[UIColor colorWithWhite:0.58 alpha:1.0]];
+    hint.text = [self bleDeviceHintText:device];
+    hint.textAlignment = NSTextAlignmentRight;
+    hint.minimumScaleFactor = 0.62;
+    hint.adjustsFontSizeToFitWidth = YES;
+
+    [detailStack addArrangedSubview:rssi];
+    [detailStack addArrangedSubview:hint];
+    [content addArrangedSubview:detailStack];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [stripe.leadingAnchor constraintEqualToAnchor:row.leadingAnchor],
+        [stripe.topAnchor constraintEqualToAnchor:row.topAnchor],
+        [stripe.bottomAnchor constraintEqualToAnchor:row.bottomAnchor],
+        [stripe.widthAnchor constraintEqualToConstant:5.0],
+
+        [content.leadingAnchor constraintEqualToAnchor:stripe.trailingAnchor constant:10.0],
+        [content.trailingAnchor constraintEqualToAnchor:row.trailingAnchor constant:-10.0],
+        [content.topAnchor constraintEqualToAnchor:row.topAnchor constant:5.0],
+        [content.bottomAnchor constraintEqualToAnchor:row.bottomAnchor constant:-5.0]
+    ]];
+
+    return row;
+}
+
 - (NSString *)deviceHintText:(NWDevice *)device {
     if (device.openPorts.count > 0) {
         NSMutableArray *ports = [NSMutableArray array];
@@ -1658,6 +2460,25 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     return device.isNew ? @"new" : @"seen";
 }
 
+- (NSString *)bleDeviceHintText:(NWBLEDevice *)device {
+    if (device.serviceHint.length > 0) {
+        NSArray *parts = [device.serviceHint componentsSeparatedByString:@" "];
+        NSMutableArray *shortParts = [NSMutableArray array];
+        for (NSString *part in parts) {
+            if (part.length > 0 && ![part isEqualToString:@"connectable"]) {
+                [shortParts addObject:part];
+            }
+            if (shortParts.count >= 2) {
+                break;
+            }
+        }
+        if (shortParts.count > 0) {
+            return [shortParts componentsJoinedByString:@","];
+        }
+    }
+    return device.isNew ? @"new" : @"seen";
+}
+
 - (UIColor *)colorForDeviceType:(NSString *)type {
     if ([type isEqualToString:@"Unknown"]) return [self colorWarn];
     if ([type isEqualToString:@"Network"]) return [self colorAccent];
@@ -1665,6 +2486,17 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     if ([type isEqualToString:@"Computers"]) return [UIColor colorWithRed:0.67 green:0.72 blue:1.0 alpha:1.0];
     if ([type isEqualToString:@"Smart Home"]) return [self colorGood];
     if ([type isEqualToString:@"Media"]) return [UIColor colorWithRed:1.0 green:0.48 blue:0.38 alpha:1.0];
+    return [self colorMuted];
+}
+
+- (UIColor *)colorForBLEType:(NSString *)type {
+    if ([type isEqualToString:@"Unknown"]) return [self colorWarn];
+    if ([type isEqualToString:@"Audio"]) return [UIColor colorWithRed:0.35 green:0.78 blue:1.0 alpha:1.0];
+    if ([type isEqualToString:@"Wearable"]) return [self colorAccent];
+    if ([type isEqualToString:@"Fitness"]) return [self colorGood];
+    if ([type isEqualToString:@"Input"]) return [UIColor colorWithRed:0.67 green:0.72 blue:1.0 alpha:1.0];
+    if ([type isEqualToString:@"Beacon"]) return [UIColor colorWithRed:1.0 green:0.48 blue:0.38 alpha:1.0];
+    if ([type isEqualToString:@"Smart"]) return [UIColor colorWithRed:0.74 green:0.86 blue:0.38 alpha:1.0];
     return [self colorMuted];
 }
 
@@ -1759,6 +2591,7 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
         [self settingsRow:@"TCP Sweep" value:@"Lightweight"],
         [self settingsRow:@"Bonjour / mDNS" value:@"On"],
         [self settingsRow:@"SSDP Discovery" value:@"On"],
+        [self settingsRow:@"BLE Scan" value:self.bleCentral.state == CBManagerStatePoweredOn ? @"On" : self.bleStatus],
         [self settingsRow:@"Deep Fingerprints" value:@"Unknown only"],
         [self settingsRow:@"Collector JSON" value:self.lastResult.collectorCount > 0 ? @"Connected" : @"Auto"],
         [self settingsRow:@"ARP Cache" value:@"On"],
@@ -1839,6 +2672,16 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
     return count;
 }
 
+- (NSInteger)countForBLEType:(NSString *)type {
+    NSInteger count = 0;
+    for (NWBLEDevice *device in self.bleDevicesByID.allValues) {
+        if ([device.type isEqualToString:type]) {
+            count++;
+        }
+    }
+    return count;
+}
+
 - (NSInteger)countNewDevices:(NSArray<NWDevice *> *)devices {
     NSInteger count = 0;
     for (NWDevice *device in devices) {
@@ -1847,6 +2690,26 @@ static const NSTimeInterval NWDefaultRefreshInterval = 60.0;
         }
     }
     return count;
+}
+
+- (NSInteger)newBLECount {
+    NSInteger count = 0;
+    for (NWBLEDevice *device in self.bleDevicesByID.allValues) {
+        if (device.isNew) {
+            count++;
+        }
+    }
+    return count;
+}
+
+- (NSString *)strongestBLERSSIText {
+    NSNumber *best = nil;
+    for (NWBLEDevice *device in self.bleDevicesByID.allValues) {
+        if (!best || device.rssi.integerValue > best.integerValue) {
+            best = device.rssi;
+        }
+    }
+    return best ? [NSString stringWithFormat:@"%@", best] : @"--";
 }
 
 - (NSInteger)peakCount {

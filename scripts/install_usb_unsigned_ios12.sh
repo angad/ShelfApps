@@ -122,6 +122,14 @@ xcodebuild \
 
 APP_PATH="build/Debug-iphoneos/${APP_NAME}.app"
 BIN_PATH="${APP_PATH}/${APP_NAME}"
+ENTITLEMENTS_PATH="${ENTITLEMENTS_PATH:-}"
+if [ -z "$ENTITLEMENTS_PATH" ] && [ -f "$APP_DIR/entitlements.plist" ]; then
+  ENTITLEMENTS_PATH="$APP_DIR/entitlements.plist"
+fi
+SIGN_ARG="-S"
+if [ -n "$ENTITLEMENTS_PATH" ]; then
+  SIGN_ARG="-S$ENTITLEMENTS_PATH"
+fi
 
 rm -rf "${APP_PATH}/_CodeSignature" "${BIN_PATH}.vtool"
 xcrun vtool \
@@ -132,7 +140,18 @@ xcrun vtool \
   "$BIN_PATH"
 mv "${BIN_PATH}.vtool" "$BIN_PATH"
 chmod +x "$BIN_PATH"
-ldid -Hsha1 -Hsha256 -I"$BUNDLE_ID" -S "$BIN_PATH"
+ldid -Hsha1 -Hsha256 -P -Cadhoc -I"$BUNDLE_ID" "$SIGN_ARG" "$BIN_PATH"
+
+find "$APP_PATH" -type f | while IFS= read -r candidate; do
+  if [ "$candidate" = "$BIN_PATH" ]; then
+    continue
+  fi
+  if file "$candidate" | grep -q 'Mach-O .*executable'; then
+    chmod +x "$candidate"
+    helper_id="${BUNDLE_ID}.$(basename "$candidate" | tr -c '[:alnum:].-' '_')"
+    ldid -Hsha1 -Hsha256 -P -Cadhoc -I"$helper_id" "$SIGN_ARG" "$candidate"
+  fi
+done
 
 rm -rf Payload "${APP_NAME}.ipa"
 mkdir Payload
