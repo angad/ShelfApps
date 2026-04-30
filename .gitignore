@@ -21,8 +21,17 @@ apps/*
 !apps/OverheadFlight/**
 !apps/ParkCams/
 !apps/ParkCams/**
-!apps/PocketLab/
-!apps/PocketLab/**
+!apps/CodexMobile/
+!apps/CodexMobile/**
+
+# CodexMobile local-only artifacts.
+# Keep source, docs, icons, and app-builder scripts tracked, but do not publish
+# bundled Codex/probe binaries, local jailbreak entitlements, packages, logs, or
+# generated Xcode output.
+apps/CodexMobile/CodexMobile/Resources/codex
+apps/CodexMobile/CodexMobile/Resources/codex_probe
+apps/CodexMobile/entitlements.plist
+apps/CodexMobile/diagnostics-spawn.log
 
 # Xcode / XcodeGen generated output
 *.xcodeproj/
@@ -55,6 +64,10 @@ skills/
 # Local non-release app companion scripts
 scripts/skyradar_feed.py
 
+# Local writing drafts
+substack.md
+tweets.md
+
 # Python generated files
 __pycache__/
 */__pycache__/
@@ -66,6 +79,8 @@ __pycache__/
 *.ips
 *.ips.ca
 *_syslog*.txt
+device_screenshots/
+device_control/
 device_crashes/
 device_crashes_latest/
 device_media/

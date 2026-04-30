@@ -1,0 +1,45 @@
+name: CodexMobile
+options:
+  bundleIdPrefix: com.angad
+  deploymentTarget:
+    iOS: "12.0"
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: "12.0"
+    ENABLE_BITCODE: "NO"
+    SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+    SUPPORTS_MACCATALYST: "NO"
+targets:
+  CodexMobile:
+    type: application
+    platform: iOS
+    sources:
+      - path: CodexMobile
+        excludes:
+          - Resources/codex
+          - Resources/codex_probe
+          - Resources/appbuilder_build.sh
+          - Resources/appbuilder_build_project.sh
+          - Resources/appbuilder_agent_instructions.md
+      - path: CodexMobile/Resources/codex
+        buildPhase: resources
+        optional: true
+      - path: CodexMobile/Resources/codex_probe
+        buildPhase: resources
+        optional: true
+      - path: CodexMobile/Resources/appbuilder_build_project.sh
+        buildPhase: resources
+      - path: CodexMobile/Resources/appbuilder_agent_instructions.md
+        buildPhase: resources
+    dependencies:
+      - sdk: CFNetwork.framework
+      - sdk: Security.framework
+      - sdk: QuartzCore.framework
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.angad.codexmobile
+        PRODUCT_NAME: CodexMobile
+        INFOPLIST_FILE: CodexMobile/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""

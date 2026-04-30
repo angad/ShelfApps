@@ -15,6 +15,8 @@ Only these app folders are intended for release:
 - `apps/CityCams/`
 - `apps/ParkCams/`
 
+`apps/CodexMobile/` is developer tooling, not part of the public shelf-app set, but its source and documentation may be committed when preparing the local on-device Codex workflow for open source.
+
 Other app folders are local experiments and should remain ignored.
 
 ## Layout Rules
@@ -55,6 +57,7 @@ The installer reads `name`, `PRODUCT_NAME`, and `PRODUCT_BUNDLE_IDENTIFIER` from
 
 - Keep private values in `.env`; it is ignored.
 - Use `IPHONE_UDID` in `.env` for the local USB installer.
+- Keep jailbreak/rooted-device SSH details, local ports, helper paths, Codex auth state, API keys, and bearer tokens private.
 - Keep `.env.example` scrubbed and safe to commit.
 
 ## App Defaults
@@ -105,4 +108,4 @@ For visual or layout issues, prefer fixing the programmatic UIKit layout and red
 
 ## Generated Files
 
-Generated Xcode projects, build folders, IPA/Payload output, device crash dumps, and syslog captures should normally stay untracked. Keep durable source, scripts, skills, README files, and `project.yml` files tracked.
+Generated Xcode projects, build folders, IPA/Payload output, device crash dumps, syslog captures, raw screenshots, local jailbreak entitlements, and bundled device binaries should normally stay untracked. Keep durable source, scripts, skills, README files, and `project.yml` files tracked.

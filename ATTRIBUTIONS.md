@@ -10,6 +10,8 @@ Last reviewed: 2026-04-26.
 
 - The MIT License applies to this repository's original code and documentation only.
 - App Store, Apple, iOS, iPhone, UIKit, AVKit, CoreLocation, CoreMotion, and other Apple names or SDKs are trademarks or software from Apple and are not licensed by this repository.
+- OpenAI, Codex, ChatGPT, and GPT model names are trademarks or services from OpenAI. This repository does not redistribute OpenAI service credentials, Codex auth state, or bundled Codex binaries.
+- Jailbreak/rooted-device tools, helper binaries, ldid, libimobiledevice, XcodeGen, ZXTouch, ImageMagick, SDK files, and other local tooling remain subject to their own licenses and terms. Review those licenses before distributing binaries or packaged workflows.
 - External APIs and camera feeds may change availability, rate limits, licensing, attribution requirements, and commercial-use rules without notice.
 - Do not commit API keys, cookies, device identifiers, generated app bundles, generated IPAs, or local diagnostics.
 
@@ -83,3 +85,11 @@ Some direct streams are parsed from NPS pages and may be hosted by third-party s
 ## NetworkWall and DriveDash
 
 These apps primarily use local-device APIs and local network data. No external data provider attribution is currently required beyond Apple platform APIs and local network/device permissions.
+
+## CodexMobile
+
+CodexMobile is developer tooling for an owned jailbroken/rooted iPhone 6-class device. The repository should publish only the Objective-C source, app-builder scripts, documentation, and project metadata.
+
+Do not redistribute local Codex binaries, helper binaries, device SDKs, jailbreak entitlements, Codex session/auth files, API keys, bearer tokens, device identifiers, generated IPAs, generated app bundles, crash logs, syslogs, or raw diagnostics unless each item has been explicitly reviewed and cleared for release.
+
+The rooted-device workflow is for devices owned and controlled by the developer. It should not be described or used as a way to bypass iCloud, Activation Lock, DRM, App Store policy on third-party devices, or access controls on devices not owned by the operator.

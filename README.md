@@ -62,7 +62,15 @@ Only these app folders are intended for the public release:
 | [CityCams](apps/CityCams) | <img src="apps/CityCams/screenshots/IMG_0405.PNG" alt="CityCams public camera browser" width="180"> | Public city camera viewer for a fixed desk or wall display. |
 | [ParkCams](apps/ParkCams) | <img src="apps/ParkCams/screenshots/IMG_0401.PNG" alt="ParkCams national park camera browser" width="180"> | National park image/feed browser with a display-oriented RangerLens experience. |
 
-Other app folders are local experiments and are ignored for release.
+Other app folders are local experiments and are ignored for release, except for developer tooling that is explicitly documented.
+
+## Developer Tooling
+
+[CodexMobile](apps/CodexMobile) is an experimental Objective-C/UIKit app for an owned jailbroken/rooted iPhone 6-class device. It lets Codex run local app-builder workflows on the phone and install generated UIKit apps through the local AppBuilder toolchain.
+
+CodexMobile is published as source and scripts only. Generated Xcode projects, build products, IPAs, payloads, device logs, crash reports, jailbreak entitlements, and bundled device binaries are intentionally ignored. A local developer must provide their own cross-compiled Codex binary, helper binaries, SDK/toolchain files, credentials, and signing/install setup.
+
+The rooted-device workflow is intended for devices you own and control. It is not intended to bypass iCloud, Activation Lock, DRM, App Store policy on third-party devices, or any other access control on devices that are not yours.
 
 ## Mockups And Visual Direction
 
@@ -116,6 +124,20 @@ scripts/install_usb_unsigned_ios12.sh apps/DriveDash
 ```
 
 The installer reads app metadata from the selected app's `project.yml`, generates the Xcode project, builds with signing disabled, patches the Mach-O build version for iOS 12 compatibility, signs with `ldid`, packages an IPA, installs with `ideviceinstaller`, and verifies the bundle id.
+
+## Jailbroken Device Workflows
+
+Some local scripts support owned jailbroken/rooted iPhone 6 automation over USB, including screenshots, taps, ZXTouch control, and CodexMobile's AppBuilder install path. These scripts expect private values to live in `.env`, commonly `IPHONE_UDID`, `IPHONE_JB_SSH_USER`, `IPHONE_JB_SSH_PORT`, `IPHONE_JB_LOCAL_SSH_PORT`, and `IPHONE_JB_SSH_KEY`.
+
+Do not commit real device identifiers, SSH keys, jailbreak passwords, Codex auth caches, API keys, app-server bearer tokens, generated device logs, or generated app bundles. `.env.example` documents the variable names without values.
+
+Before staging a public commit, run:
+
+```sh
+scripts/check_open_source_hygiene.sh
+```
+
+The check scans stageable files for generated app artifacts, CodexMobile local binaries, diagnostics, local env files, and high-confidence secret patterns.
 
 ## Development Guidance
 
