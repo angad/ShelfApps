@@ -72,6 +72,14 @@ CodexMobile is published as source and scripts only. Generated Xcode projects, b
 
 The rooted-device workflow is intended for devices you own and control. It is not intended to bypass iCloud, Activation Lock, DRM, App Store policy on third-party devices, or any other access control on devices that are not yours.
 
+To build the local Codex binary from an official Codex checkout and place it where CodexMobile will bundle it:
+
+```sh
+scripts/build_codex_ios12.sh --codex-repo /path/to/codex
+```
+
+The generated `apps/CodexMobile/CodexMobile/Resources/codex` binary remains ignored.
+
 ## Mockups And Visual Direction
 
 Some app directions started from ImageGen 2 mockups or generated icon concepts. These are not exact implementation screenshots; they were used as quick visual references before Codex translated the ideas into UIKit.

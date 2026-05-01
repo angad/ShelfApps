@@ -15,6 +15,24 @@ CodexMobile expects local files that are intentionally not committed:
 
 The XcodeGen project marks the Codex and probe binaries as optional resources so the project can be generated from a clean source checkout. A fully working device build still needs the local binaries supplied before installing to the phone.
 
+## Build The Local Codex Binary
+
+From the workspace root, build the iOS 12 arm64 Codex CLI binary from a local checkout of the official Codex repo:
+
+```sh
+scripts/build_codex_ios12.sh --codex-repo /Users/angad/workspace/codex
+```
+
+The script builds `codex-rs` with the Rust `aarch64-apple-ios` target, forces an iOS 12.0 deployment target, verifies the Mach-O `LC_BUILD_VERSION`, and copies the result to:
+
+```sh
+apps/CodexMobile/CodexMobile/Resources/codex
+```
+
+That output path is ignored by Git. A clean source checkout can generate the Xcode project without it, but a working on-device CodexMobile install needs this local binary before packaging.
+
+The known-good Codex checkout is the official `https://github.com/openai/codex` repository plus small local iOS portability edits: code-mode runtime stubs in place of the v8-backed runtime, `arboard` clipboard disabled for iOS, and iOS included in the process-hardening cfg gates that are safe on the target. The script warns if those stubs are missing because a pristine upstream checkout may not yet cross-compile without equivalent patches.
+
 ## Current Surfaces
 
 - Chat: streams Codex output as assistant text, thinking/activity, command cards, and changed-file cards.
