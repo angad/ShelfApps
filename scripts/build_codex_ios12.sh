@@ -120,7 +120,8 @@ iOS portability edits:
   - include iOS in process-hardening cfg gates where needed
 
 Continuing anyway; if cargo fails, apply equivalent iOS portability patches in
-the Codex checkout and rerun this script.
+the Codex checkout and rerun this script. See:
+  $ROOT_DIR/docs/codex-ios-portability.md
 EOF
 fi
 

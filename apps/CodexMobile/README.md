@@ -31,7 +31,7 @@ apps/CodexMobile/CodexMobile/Resources/codex
 
 That output path is ignored by Git. A clean source checkout can generate the Xcode project without it, but a working on-device CodexMobile install needs this local binary before packaging.
 
-The known-good Codex checkout is the official `https://github.com/openai/codex` repository plus small local iOS portability edits: code-mode runtime stubs in place of the v8-backed runtime, `arboard` clipboard disabled for iOS, and iOS included in the process-hardening cfg gates that are safe on the target. The script warns if those stubs are missing because a pristine upstream checkout may not yet cross-compile without equivalent patches.
+The known-good Codex checkout is the official `https://github.com/openai/codex` repository plus small local iOS portability edits: code-mode runtime stubs in place of the v8-backed runtime, `arboard` clipboard disabled for iOS, and iOS included in the process-hardening cfg gates that are safe on the target. The exact edits are documented in [../../docs/codex-ios-portability.md](../../docs/codex-ios-portability.md). The script warns if those stubs are missing because a pristine upstream checkout may not yet cross-compile without equivalent patches.
 
 ## Current Surfaces
 
